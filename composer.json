@@ -1,0 +1,11 @@
+{
+    "name": "user/user",
+    "description": "User Module Description",
+    "authors": [
+        {
+            "name": "Eduard",
+            "email": "edo.terakyan@gmail.com"
+        }
+    ],
+    "require": {}
+}

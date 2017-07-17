@@ -1,0 +1,13 @@
+{
+    "name": "Users",
+    "slug": "users",
+    "type":"core",
+    "author":"Abokamal",
+    "title":"Users",
+    "author_site":"http://dev.bootydev.co.uk/",
+    "version": "1.0",
+    "description": "This is the description for the Users module.",
+    "enabled": true,
+    "created_at": "05-11-2013 12:00",
+    "tables":["users","roles","users_profile","permissions","permission_role","memberships","membership_permission"]
+}

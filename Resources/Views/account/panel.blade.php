@@ -1,0 +1,1 @@
+{!! \Eventy::filter('toggle.panels', ['user'=>$user,'page'=>'edit_user'])  !!}
