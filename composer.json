@@ -7,5 +7,10 @@
             "email": "edo.terakyan@gmail.com"
         }
     ],
-    "require": {}
+    "require": {},
+	"autoload": {
+        "psr-4": {
+            "sahakavatar\\user": "src/"
+        }
+    }
 }
