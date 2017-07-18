@@ -2,13 +2,13 @@
 
 namespace Sahakavatar\User\Http\Controllers\Auth;
 
-use App\Events\sendEmailEvent;
+//use App\Events\sendEmailEvent;
 use App\Http\Controllers\Controller;
-use App\Modules\Modules\Models\AdminPages;
-use App\Modules\Settings\Models\SendEmail;
-use App\Modules\Users\User;
-use App\Repositories\AdminsettingRepository as Settings;
-use App\Repositories\EmailsRepository;
+use Sahakavatar\Modules\Models\AdminPages;
+use Sahakavatar\Settings\Models\SendEmail;
+use Sahakavatar\User;
+//use App\Repositories\AdminsettingRepository as Settings;
+//use App\Repositories\EmailsRepository;
 use Auth;
 use Event;
 use Illuminate\Contracts\Auth\Guard;
@@ -44,18 +44,18 @@ class AuthController extends Controller
      * @param Settings $settings
      */
     public function __construct(
-        Guard $auth,
-        Settings $settings,
-        EmailsRepository $emailsRepository,
-        SendEmail $sendEmail
+        Guard $auth
+//        Settings $settings,
+//        EmailsRepository $emailsRepository,
+//        SendEmail $sendEmail
     )
     {
         $this->auth = $auth;
-        $this->settings = $settings;
-        $this->emailsRepository = $emailsRepository;
-        $this->sendEmail = $sendEmail;
+//        $this->settings = $settings;
+//        $this->emailsRepository = $emailsRepository;
+//        $this->sendEmail = $sendEmail;
         $this->adminUrl = AdminPages::where('slug', 'admin-login')->first()->url;
-        $this->middleware('guest', ['except' => 'getLogout']);
+//        $this->middleware('guest', ['except' => 'getLogout']);
 
     }
 
@@ -77,12 +77,11 @@ class AuthController extends Controller
      */
     public function getLogin()
     {
-        if (!$this->settings->getSystemLoginReg('enable_login')) {
-            redirect("/");
-        }
+//        if (!$this->settings->getSystemLoginReg('enable_login')) {
+//            redirect("/");
+//        }
 
-        $enable_reg = $this->settings->getSystemLoginReg('enable_registration');
-
+        $enable_reg = true;//$this->settings->getSystemLoginReg('enable_registration');
         return view('frontend.login', compact('enable_reg'));
     }
 
