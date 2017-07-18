@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Users\Models;
+namespace Sahakavatar\User\Models;
 
 use App\Modules\Users\Traits\ShinobiTrait;
 use File;

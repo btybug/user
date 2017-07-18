@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Users\Http\Controllers\Auth;
+namespace Sahakavatar\User\Http\Controllers\Auth;
 
 use App\Events\sendEmailEvent;
 use App\Http\Controllers\Controller;

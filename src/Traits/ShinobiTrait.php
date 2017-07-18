@@ -9,7 +9,7 @@
  *
  */
 
-namespace App\Modules\Users\Traits;
+namespace Sahakavatar\User\Traits;
 
 /**
  * Class ShinobiTrait

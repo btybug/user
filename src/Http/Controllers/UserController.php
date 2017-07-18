@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Users\Http\Controllers;
+namespace Sahakavatar\User\Http\Controllers;
 
 use App\Events\sendEmailEvent;
 use App\helpers\dbhelper as dbhelper;

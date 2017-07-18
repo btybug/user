@@ -6,7 +6,7 @@
  * Time: 14:58
  */
 
-namespace App\Modules\Users\Http\Controllers;
+namespace Sahakavatar\User\Http\Controllers;
 
 
 use App\Http\Controllers\Controller;

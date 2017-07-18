@@ -9,7 +9,7 @@
  *
  */
 
-namespace App\Modules\Users\Http\Controllers;
+namespace Sahakavatar\User\Http\Controllers;
 
 use App\Modules\Manage\Models\FrontendPage;
 use App\Modules\Modules\Models\AdminPages;

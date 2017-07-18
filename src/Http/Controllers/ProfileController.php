@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Users\Http\Controllers;
+namespace Sahakavatar\User\Http\Controllers;
 
 use App\helpers\dbhelper;
 use App\Http\Controllers\Controller;

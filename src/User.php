@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Users;
+namespace Sahakavatar\User;
 
 use App\Modules\Users\Models\Roles;
 use App\Modules\Users\Models\UsersProfile;

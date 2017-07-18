@@ -6,7 +6,7 @@
  * Time: 4:25 PM
  */
 
-namespace App\Modules\Users\Models;
+namespace Sahakavatar\User\Models;
 use App\Modules\Users\Traits\ShinobiTrait;
 use Illuminate\Database\Eloquent\Model;
 

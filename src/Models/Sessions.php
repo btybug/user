@@ -5,7 +5,7 @@
  * Date: 12/26/2016
  * Time: 4:42 PM
  */
-namespace App\Modules\Users\Models;
+namespace Sahakavatar\User\Models;
 use Auth;
 use Illuminate\Database\Eloquent\Model;
 

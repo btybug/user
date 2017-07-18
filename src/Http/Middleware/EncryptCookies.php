@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Users\Http\Middleware;
+namespace Sahakavatar\User\Http\Middleware;
 
 use Illuminate\Cookie\Middleware\EncryptCookies as BaseEncrypter;
 

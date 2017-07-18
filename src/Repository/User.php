@@ -6,7 +6,7 @@
  * Time: 1:31 PM
  */
 
-namespace App\Modules\Users\Repository;
+namespace Sahakavatar\User\Repository;
 
 use app\helpers\helpers;
 use App\Modules\Users\User as UserModel;

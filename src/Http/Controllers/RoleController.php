@@ -9,7 +9,7 @@
  *
  */
 
-namespace App\Modules\Users\Http\Controllers;
+namespace Sahakavatar\User\Http\Controllers;
 
 use Illuminate\Contracts\Auth\Guard;
 use App\helpers\helpers;
