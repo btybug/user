@@ -2,52 +2,47 @@
 
 namespace Sahakavatar\User\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Modules\Create\FormFields;
-use App\Modules\Create\Forms;
-use App\Modules\Users\User;
-use Auth;
+use Sahakavatar\Cms\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Http\Request;
-use Validator;
+use Sahakavatar\User\Http\Requests\Account\ChangeRegistrationRequest;
+use Sahakavatar\User\Http\Requests\Account\SaveAccountRequest;
+use Sahakavatar\User\Repository\UserRepository;
+use Sahakavatar\User\Services\AccountService;
 
+/**
+ * Class AccountController
+ * @package Sahakavatar\User\Http\Controllers
+ */
 class AccountController extends Controller
 {
-    /**
-     * @var \App\helpers\dbhelper|null
-     */
-    private $dhelp = null;
+
 
     /**
-     * AccountController constructor.
      * @param Guard $auth
-     * @param User $user
-     */
-    public function __construct(Guard $auth, User $user)
-    {
-        $this->auth = $auth;
-        $this->user = $user;
-        $this->dhelp = new \App\helpers\dbhelper;
-        $this->middleware('auth');
-    }
-
-    /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getIndex()
+    public function getIndex(
+        Guard $auth
+    )
     {
-        $user = $this->auth->user();
+        $user = $auth->user();
         return view('users::account', compact('user'));
     }
 
+
     /**
-     * Show Loged in User Notifications
+     * @param UserRepository $userRepository
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getNotifications()
+    public function getNotifications
+    (
+        UserRepository $userRepository
+    )
     {
-        $data = $this->notirepo->adminListing();
+        $data = $userRepository->getAll();
         return view('users::notifications', $data);
     }
+
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -57,98 +52,45 @@ class AccountController extends Controller
         return view('users::edit_profile');
     }
 
+
     /**
-     * @param Request $request
-     * @param User $user
-     * @return $this|\Illuminate\Http\RedirectResponse
+     * @param ChangeRegistrationRequest $request
+     * @param AccountService $accountService
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function changeRegistration(Request $request, User $user)
+    public function changeRegistration(
+        ChangeRegistrationRequest $request,
+        AccountService $accountService
+    )
     {
-
-        $validator = Validator::make(
-            $request->all(),
-            [
-                'email' => 'required|email|max:255|unique:users,email,' . $this->auth->user()->id . ',id',
-                'username' => 'required|max:255|unique:users,username,' . $this->auth->user()->id . ',id',
-//            'current_password' => 'required|min:6',
-                'password' => 'required|confirmed|different:current_password|min:6',
-                'password_confirmation' => 'required|different:current_password|min:6|same:password'
-            ]
-        );
-
-//        $validator->after(function($validator) use ($user,$request) {
-//            if (!Hash::check($request->get('current_password') , Auth::user()->password )) {
-//                $validator->errors()->add('current_password', 'Current password is incorrect!');
-//            }
-//        });
-
-        if ($validator->fails()) {
-//                dd($validator->errors());
-            return redirect()->back()->withErrors($validator->errors())->withInput();
-        }
-
-        $credentials = $request->only(
-            'password',
-            'password_confirmation'
-        );
-
-        $user = Auth::user();
-        $user->email = $request->get('email');
-        $user->password = bcrypt($credentials['password']);
-        $user->save();
-
+        $requestData = $request->only('email', 'password');
+        $accountService->changePassword($requestData);
         return redirect()->back()->with(
             [
                 'flash' => [
-                    'message' => trans('Password changed successfully.'),
+                    'message' => trans('Password has been changed successfully.'),
                 ]
             ]
         );
     }
 
+
     /**
-     * @param Request $request
-     * @return $this|\Illuminate\Http\RedirectResponse
+     * @param SaveAccountRequest $request
+     * @param AccountService $accountService
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function saveAccount(Request $request)
+    public function saveAccount(
+        SaveAccountRequest $request,
+        AccountService $accountService
+    )
     {
-        $data = $request->except('_token');
-
-        $validator = Validator::make(
-            $request->all(),
-            [
-                'email' => 'required|email|max:255|unique:users,email,' . $this->auth->user()->id . ',id',
-                'username' => 'required|max:255|unique:users,username,' . $this->auth->user()->id . ',id',
-                'name' => 'required',
-                'password' => 'sometimes|confirmed|min:6',
-                'password_confirmation' => 'sometimes|min:6|same:password'
-            ]
-        );
-
-        if ($validator->fails()) {
-//                dd($validator->errors());
-            return redirect()->back()->withErrors($validator->errors())->withInput();
-        }
-
-        $user = $this->user->find(Auth::id());
-        if (isset($data['extra'])) {
-            $data['meta_data'] = serialize($data['extra']);
-        } else {
-            $data['meta_data'] = '';
-        }
-
-        if ($data['password']) {
-            $data['password'] = bcrypt($data['password']);
-        } else {
-            unset($data['password']);
-        }
-
-        $user->update($data);
-
+        $requestData = $request->except('_token');
+        $accountService->saveAccount($requestData);
         return redirect()->back()->with(
             [
                 'flash' => [
-                    'message' => trans('Account changed successfully.'),
+                    'message' => trans('Account has been changed successfully.'),
                 ]
             ]
         );

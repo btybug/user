@@ -7,7 +7,7 @@
  */
 
 namespace Sahakavatar\User\Models;
-use App\Modules\Users\Traits\ShinobiTrait;
+use Sahakavatar\User\Traits\ShinobiTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class MembershipPermissions extends Model
@@ -35,11 +35,11 @@ class MembershipPermissions extends Model
     protected $dates = ['created_at', 'updated_at'];
 
     public function permissions(){
-        return $this->hasMany('App\Modules\Users\Models\Permissions','id','membership_id');
+        return $this->hasMany('Sahakavatar\User\Models\Permissions','id','membership_id');
     }
 
     public function membership(){
-        return $this->belongsTo('App\Modules\Users\Models\Membership','membership_id','id');
+        return $this->belongsTo('Sahakavatar\User\Models\Membership','membership_id','id');
     }
 
     public static function optimizePageMemberships($page,$data){

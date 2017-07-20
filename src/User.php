@@ -2,9 +2,9 @@
 
 namespace Sahakavatar\User;
 
-use App\Modules\Users\Models\Roles;
-use App\Modules\Users\Models\UsersProfile;
-use App\Modules\Users\Traits\ShinobiTrait;
+use Sahakavatar\User\Models\Roles;
+use Sahakavatar\User\Models\UsersProfile;
+use Sahakavatar\User\Traits\ShinobiTrait;
 use Auth;
 use File;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -12,7 +12,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * Class User
- * @package App\Modules\Users
+ * @package Sahakavatar\User
  */
 class User extends Authenticatable
 {
@@ -258,7 +258,7 @@ class User extends Authenticatable
      */
     public function role()
     {
-        return $this->belongsTo('App\Modules\Users\Models\Roles', 'role_id', 'id');
+        return $this->belongsTo('Sahakavatar\User\Models\Roles', 'role_id', 'id');
     }
 
     /**
@@ -266,17 +266,17 @@ class User extends Authenticatable
      */
     public function profile()
     {
-        return $this->hasOne('App\Modules\Users\Models\UsersProfile');
+        return $this->hasOne('Sahakavatar\User\Models\UsersProfile');
     }
 
     public function usersActivity()
     {
-        return $this->hasOne('App\Modules\Users\Models\UsersActivity');
+        return $this->hasOne('Sahakavatar\User\Models\UsersActivity');
     }
 
     public function membership()
     {
-        return $this->hasOne('App\Modules\Users\Models\Membership', 'id', 'membership_id');
+        return $this->hasOne(\Sahakavatar\User\Models\Membership::class, 'id', 'membership_id');
     }
 
     /**

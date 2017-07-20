@@ -13,6 +13,7 @@ use File;
 use Hash;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
+use Sahakavatar\User\Repository\UserRepository;
 use Validator;
 
 class ProfileController extends Controller
@@ -26,21 +27,26 @@ class ProfileController extends Controller
         $this->middleware('auth');
     }
 
-    public function getIndex($id = null)
+    public function getIndex(
+        Request $request,
+        Guard $auth,
+        UserRepository $userRepository
+    )
     {
-        if ($id) {
-            $user = User::find($id);
+        if ($request->id) {
+            $user = $userRepository->find($request->id);
             if (!$user) return redirect()->back();
         } else {
-            $user = $this->auth->user();
+            $user = $auth->user();
         }
         return view('users::profile', compact('user'));
     }
 
-    public function getView()
+    public function getView(
+        Guard $auth
+    )
     {
-        $user = $this->auth->user();
-
+        $user = $auth->user();
         return view('users::profile', compact('user'));
     }
 
@@ -52,32 +58,7 @@ class ProfileController extends Controller
     public function getLoginDetails()
     {
         $model = Auth::user();
-        $formSettings = FormSettings::where('form_id', '58e21be5a8bd8')->first();
-        if (!$formSettings) {
-            abort(404);
-        }
-        $formSettings = $formSettings->additional_settings;
-
-        return view('users::profile.edit_login_details',compact('model','formSettings'));
-    }
-
-    public function postEditProfile(Request $request)
-    {
-        dd($request->all());
-    }
-
-    public function postLoginDetails(Request $request)
-    {
-        dd($request->all());
-    }
-
-    private function createDir($path)
-    {
-
-        if (!File::exists($path)) {
-            File::makeDirectory($path, 0755, true);
-        }
-
+        return view('users::profile.edit_login_details',compact(['model']));
     }
 
     public function changePassword(Request $request, User $user)
