@@ -10,15 +10,17 @@ namespace Sahakavatar\User\Http\Controllers;
 
 
 use App\Http\Controllers\Controller;
-use App\Modules\Users\Models\Status;
+use Sahakavatar\User\Repository\StatusRepository;
 use Illuminate\Http\Request;
 
 class StatusController extends Controller
 {
 
-    public function getIndex()
+    public function getIndex(
+        StatusRepository $statusRepository
+    )
     {
-        $statuses = Status::all();
+        $statuses = $statusRepository->getAll();
         return view('users::status.index', compact(['statuses']));
     }
 

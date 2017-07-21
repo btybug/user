@@ -2,30 +2,16 @@
 
 namespace Sahakavatar\User\Http\Controllers;
 
-use App\helpers\dbhelper;
 use App\Http\Controllers\Controller;
-use App\Models\FormSettings;
-use App\Modules\Create\Forms;
-use App\Modules\Users\Models\UsersProfile;
-use App\Modules\Users\User;
 use Auth;
-use File;
-use Hash;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
+use Sahakavatar\User\Http\Requests\Profile\ChangePasswordRequest;
 use Sahakavatar\User\Repository\UserRepository;
-use Validator;
+use Sahakavatar\User\Services\AccountService;
 
 class ProfileController extends Controller
 {
-    public function __construct(Guard $auth, User $user, UsersProfile $profile)
-    {
-        $this->auth = $auth;
-        $this->user = $user;
-        $this->profile = $profile;
-        $this->dhelper = new dbhelper;
-        $this->middleware('auth');
-    }
 
     public function getIndex(
         Request $request,
@@ -61,38 +47,17 @@ class ProfileController extends Controller
         return view('users::profile.edit_login_details',compact(['model']));
     }
 
-    public function changePassword(Request $request, User $user)
+    public function changePassword(
+        ChangePasswordRequest $request,
+        AccountService $accountService
+    )
     {
-
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email|max:255|unique:users',
-            'current_password' => 'required|min:6',
-            'password' => 'required|confirmed|different:current_password|min:6',
-            'password_confirmation' => 'required|different:current_password|min:6|same:password'
-        ]);
-
-        $validator->after(function ($validator) use ($user, $request) {
-            if (!Hash::check($request->get('current_password'), Auth::user()->password)) {
-                $validator->errors()->add('current_password', 'Current password is incorrect!');
-            }
-        });
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator->errors())->withInput()->with('active', 'profile');
-        }
-
-        $credentials = $request->only(
-            'password', 'password_confirmation'
-        );
-
-        $user = Auth::user();
-        $user->email = $request->get('email');
-        $user->password = bcrypt($credentials['password']);
-        $user->save();
+        $requestData = $request->only('email', 'password');
+        $accountService->changePassword($requestData);
 
         return redirect()->back()->with([
             'flash' => [
-                'message' => trans('Password changed successfully.'),
+                'message' => trans('Password has been changed successfully.'),
             ]
         ]);
     }
