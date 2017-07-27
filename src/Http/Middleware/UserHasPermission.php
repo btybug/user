@@ -1,6 +1,8 @@
 <?php
 namespace Sahakavatar\User\Http\Middleware;
 
+use Sahakavatar\Cms\Services\RenderService;
+use Sahakavatar\Console\Repository\AdminPagesRepository;
 use Sahakavatar\Modules\Models\AdminPages;
 use Sahakavatar\User\Models\Permissions;
 use App\User;
@@ -17,15 +19,17 @@ class UserHasPermission
     * @var Illuminate\Contracts\Auth\Guard
     */
     protected $auth;
+    protected $adminPagesRepo;
 
     /**
     * Create a new UserHasPermission instance.
     *
     * @param Guard $auth
     */
-    public function __construct(Guard $auth)
+    public function __construct(Guard $auth,AdminPagesRepository $adminPagesRepository)
     {
-    $this->auth = $auth;
+        $this->auth = $auth;
+        $this->adminPagesRepo = $adminPagesRepository;
     }
 
     /**
@@ -81,14 +85,15 @@ class UserHasPermission
      * @return bool
      */
     private function checkIfIssetPermission($permission){
-        $page = AdminPages::where('permission',$permission)->first();
+        $page = $this->adminPagesRepo->findBy('permission',$permission);
         $user = \Auth::user();
 
         if($user->role->slug == User::ROLE_SUPERADMIN_SLUG){
             return true;
         }
 
-        if($page && AdminPages::checkAccess($page->id,$user->role->slug)){
+
+        if($page && RenderService::checkAccess($page->id,$user->role->slug)){
             return true;
         }
 

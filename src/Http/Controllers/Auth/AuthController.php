@@ -4,10 +4,11 @@ namespace Sahakavatar\User\Http\Controllers\Auth;
 
 //use App\Events\sendEmailEvent;
 use App\Http\Controllers\Controller;
+use Sahakavatar\Console\Repository\AdminPagesRepository;
 use Sahakavatar\Modules\Models\AdminPages;
 use Sahakavatar\Settings\Models\SendEmail;
 use Sahakavatar\User;
-//use App\Repositories\AdminsettingRepository as Settings;
+//use Sahakavatar\Settings\Repository\AdminsettingRepository as Settings;
 //use App\Repositories\EmailsRepository;
 use Auth;
 use Event;
@@ -54,7 +55,7 @@ class AuthController extends Controller
 //        $this->settings = $settings;
 //        $this->emailsRepository = $emailsRepository;
 //        $this->sendEmail = $sendEmail;
-        $this->adminUrl = AdminPages::where('slug', 'admin-login')->first()->url;
+//        $this->adminUrl = AdminPages::where('slug', 'admin-login')->first()->url;
 //        $this->middleware('guest', ['except' => 'getLogout']);
 
     }
@@ -89,8 +90,12 @@ class AuthController extends Controller
         return view('admin.login');
     }
 
-    public function postAdminLogin(Request $request)
+    public function postAdminLogin(
+        Request $request,
+        AdminPagesRepository $adminPagesRepository
+    )
     {
+        $adminUrl = $adminPagesRepository->getBy('slug', 'admin-login')->url;
         $field = filter_var($request->input('usernameOremail'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
         $request->merge([$field => $request->input('usernameOremail')]);
         $error = trans('These credentials do not match our records.');
@@ -107,7 +112,7 @@ class AuthController extends Controller
             $error = trans('Please activate your account first.');
         }
 
-        return redirect($this->adminUrl)
+        return redirect(adminUrl)
             ->withInput($request->only('username', 'remember'))
             ->with(
                 [

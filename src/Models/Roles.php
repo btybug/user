@@ -23,7 +23,7 @@ class Roles extends Model
         'Right Header Core' => 4,
     ];
 
-    protected static $accessList = [
+    public static $accessList = [
         self::ACCESS_TO_BACKEND => 'Back End',
         self::ACCESS_TO_FRONTEND => 'Front End',
         self::ACCESS_TO_BOTH => 'Back and Front End',
@@ -66,10 +66,6 @@ class Roles extends Model
     {
         $data = self::where('slug', '!=', 'superadmin')->pluck('slug', 'slug')->toArray();
         return implode($seperator, $data);
-    }
-
-    public static function getAccessToList() {
-        return self::$accessList;
     }
 
     public function getAccessName() {

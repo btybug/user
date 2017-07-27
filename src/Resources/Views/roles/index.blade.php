@@ -1,4 +1,4 @@
-@extends('layouts.mTabs',['index'=>'role_membership'])
+@extends('cms::layouts.mTabs',['index'=>'role_membership'])
 @section('tab')
     <div class="row">
         <div class="col-sm-12">
@@ -35,7 +35,7 @@
                                 <td>{!! $role->slug !!}</td>
                                 <td>{!! $role->getAccessName() !!}</td>
                                 <td>
-                                    @if(!in_array($role->id,\App\Modules\Users\User::$defaultRoles))
+                                    @if(!in_array($role->id, $defaultRoles))
                                         <a data-href="{!! url('/admin/users/roles/delete') !!}"
                                             data-key="{!! $role->id !!}" data-type="Role {{ $role->name }}" class="delete-button btn btn-danger"><i
                                                     class="fa fa-trash-o f-s-14 "></i></a>
@@ -57,5 +57,5 @@
             </div>
         </div>
     </div>
-    @include('_partials.delete_modal')
+    @include('cms::_partials.delete_modal')
 @stop

@@ -123,23 +123,23 @@ class User extends Authenticatable
      * @param string $action
      * @return bool
      */
-    public static function ranking($id, $action = 'delete')
-    {
-        $current = self::find($id);
-
-        if (!Auth::user()->isSuperadmin()) {
-            if ($current->isSuperadmin())
-                return false;
-
-            if ($current->isAdministrator()) {
-                if (Auth::user()->isAdministrator() && $action == 'edit') {
-                    return true;
-                }
-                return false;
-            }
-        }
-        return true;
-    }
+//    public static function ranking($id, $action = 'delete')
+//    {
+//        $current = self::find($id);
+//
+//        if (!Auth::user()->isSuperadmin()) {
+//            if ($current->isSuperadmin())
+//                return false;
+//
+//            if ($current->isAdministrator()) {
+//                if (Auth::user()->isAdministrator() && $action == 'edit') {
+//                    return true;
+//                }
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
 
     /**
      * @param $avatar
@@ -307,7 +307,7 @@ class User extends Authenticatable
      */
     public function getSiteUsers()
     {
-        return self::whereHas('role', function ($query) {
+        return self::ranking('role', function ($query) {
             $query->where('access', Roles::ACCESS_TO_FRONTEND);
         })->paginate();
 

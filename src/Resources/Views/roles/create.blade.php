@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('cms::layouts.admin')
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -20,7 +20,7 @@
             </div>
             <div class="form-group">
                 {!! Form::label('access','Access to',[])!!}
-                {!! Form::select('access', \App\Modules\Users\Models\Roles::getAccessToList(), null, ['class'=>'form-control'])!!}
+                {!! Form::select('access', $accessList, null, ['class'=>'form-control'])!!}
             </div>
             <div class="form-group">
                 {!! Form::submit('Add Role',['class' => 'btn btn-primary']) !!}

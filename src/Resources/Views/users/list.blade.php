@@ -1,4 +1,4 @@
-@extends('layouts.mTabs',['index'=>'admins_users'])
+@extends('cms::layouts.mTabs',['index'=>'admins_users'])
 @section('tab')
     <div class="row">
         <div class="col-md-12">
@@ -42,8 +42,8 @@
                             </td>
 
                             <td>
-                                {{ \App\helpers\helpers::formatDate($user->created_at) }}
-                                <p>{{ \App\helpers\helpers::formatTime($user->created_at) }}</p>
+                                {{ \Sahakavatar\Cms\Helpers\helpers::formatDate($user->created_at) }}
+                                <p>{{ \Sahakavatar\Cms\Helpers\helpers::formatTime($user->created_at) }}</p>
                             </td>
                             <td>
                                 @if(Auth::user()->can('users.admins.edit'))
@@ -51,7 +51,7 @@
                                        class="btn btn-warning btn-xs"><i class="fa fa-edit"></i></a>
                                 @endif
                                 <span class="m-r-5">
-                                @if (\Auth::user()->can("users.admins.delete") && \App\Modules\Users\User::ranking($user->id))
+                                @if (\Auth::user()->can("users.admins.delete") && $userService->ranking($user->id))
                                         <a data-href="{!! route('admin.users.delete') !!}"
                                            data-key="{!! $user->id !!}" data-type="User {{ $user->username }}"
                                            class="delete-button btn btn-danger btn-xs"><i
@@ -83,5 +83,5 @@
 
         </div>
     </div>
-    @include('_partials.delete_modal')
+    @include('cms::_partials.delete_modal')
 @stop

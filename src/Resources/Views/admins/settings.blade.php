@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('cms::layouts.admin')
 
 @section('content')
     <div class="col-md-12">
@@ -9,21 +9,13 @@
         {!! Form::open(['class' => 'form-horizontal', 'id' => 'blog_settings_form']) !!}
         <!-- Form Name -->
             @include('users::_partials._default_user_form')
-            @include('users::_partials.form_settings')
-
-            <div class="col-md-8">
-                {!! BBbutton('units','bb_meta_units','Select unit for settings',
-                 ['class'=>'select_style input-md btn btn-info form-control select-meta-unit',
-                 "data-type" => 'backend','data-sub'=>"general",
-                 'data-except' => htmlentities($formSettings && isset($formSettings['units']) ? json_encode($formSettings['units'],true) : json_encode([],true)),
-                 'model'=>null]) !!}
-            </div>
+{{--            @include('users::_partials.form_settings')--}}
 
             <!-- Button -->
             <div class="form-group">
                 <div class="col-md-2"></div>
                 <div class="col-md-10">
-                    <button id="singlebutton" name="singlebutton" class="btn btn-primary pull-right">Save</button>
+                    <button id="singlebutton" class="btn btn-primary pull-right">Save</button>
                 </div>
             </div>
 

@@ -25,40 +25,46 @@ use App\Modules\Users\Models\PermissionRole;
 use App\Modules\Users\Groups;
 use Auth, DB, File, Config, Entrust, View;
 
+use Sahakavatar\User\Http\Requests\Role\CreateRoleRequest;
+use Sahakavatar\User\Repository\RoleRepository;
+use Sahakavatar\User\Repository\UserRepository;
+
 class RolesController extends Controller
 {
     private $modules;
     private $extra_modules;
-    public function __construct(Guard $auth, User $user)
+    public function __construct(Guard $auth)
     {
         $this->modules = json_decode(\File::get(storage_path('app/modules.json')));
         $this->extra_modules = json_decode(\File::get(storage_path('app/plugins.json')));
         $this->auth = $auth;
-        $this->user = $user;
         $this->middleware('auth');
     }
 
-    public function getIndex()
+    public function getIndex(
+        RoleRepository $roleRepository,
+        UserRepository $userRepository
+    )
     {
-        $roles = Roles::all();
-        return view('users::roles.index', compact(['roles']));
+        $roles = $roleRepository->getAll();
+        $defaultRoles = $userRepository->getDefaultRoles();
+        return view('users::roles.index', compact(['roles', 'defaultRoles']));
     }
 
-    public function getCreate(){
-        return view('users::roles.create');
+    public function getCreate(
+        RoleRepository $roleRepository
+    ){
+        $accessList = $roleRepository->getAccessList();
+        return view('users::roles.create', compact(['accessList']));
     }
 
-    public function postCreate(Request $request){
-        $data = $request->except('_token');
-        $rules = array_merge([
-            'name' => 'required|max:100',
-            'slug' => 'required|max:255|unique:roles,slug',
-        ]);
-        $validator = \Validator::make($data, $rules);
-        if ($validator->fails()) return redirect()->back()->with('errors',$validator->errors())->withInput();
-
-        Roles::create($data);
-        return redirect('/admin/users/roles')->with('message','Role successfully created');
+    public function postCreate(
+        CreateRoleRequest $request,
+        RoleRepository $roleRepository
+    ){
+        $requestData = $request->except('_token');
+        $roleRepository->create($requestData);
+        return redirect('/admin/users/roles')->with('message','Role has been created successfully.');
     }
 
     public function getEdit($slug){

@@ -14,12 +14,14 @@ use Sahakavatar\User\Models\Status;
 
 class StatusRepository extends GeneralRepository
 {
+
+
     /**
-     * Page constructor.
+     * @return Status
      */
-    public function __construct()
+    protected function model()
     {
-        $this->model = new Status();
+        return new Status();
     }
 
 }

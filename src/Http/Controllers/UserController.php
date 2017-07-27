@@ -2,84 +2,66 @@
 
 namespace Sahakavatar\User\Http\Controllers;
 
-use App\Events\sendEmailEvent;
-use App\helpers\dbhelper as dbhelper;
-use App\helpers\helpers;
 use App\Http\Controllers\Controller;
-use App\Models\FormSettings;
-use App\Modules\Users\Models\Roles;
-use App\Modules\Users\Models\UserMeta;
-use App\Modules\Users\User;
 use Datatables;
-use File;
-use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
-use Validator;
+use Sahakavatar\User\Http\Requests\User\CreateAdminRequest;
+use Sahakavatar\User\Http\Requests\User\DeleteAdminRequest;
+use Sahakavatar\User\Http\Requests\User\EditAdminRequest;
+use Sahakavatar\User\Repository\UserProfileRepository;
+use Sahakavatar\User\Repository\UserRepository;
+use Sahakavatar\User\Services\RoleService;
+use Sahakavatar\User\Services\UserService;
 use View;
 
 class UserController extends Controller
 {
 
     /**
-     * UserController constructor.
-     * @param Guard $auth
-     * @param User $user
-     */
-    public function __construct(Guard $auth, User $user)
-    {
-        $this->auth = $auth;
-        $this->user = $user;
-        $this->helpers = new helpers;
-        $this->dhelper = new dbhelper;
-        $this->middleware('auth');
-    }
-
-    /**
      * @return mixed
      */
-    public function getIndex()
+    public function getIndex(
+        UserService $userService
+    )
     {
-        $users = $this->user->getSiteUsers();
-        return view('users::users.list')->with('users', $users);
+        $users = $userService->getSiteUsers()->paginate();
+        return view('users::users.list', compact(['users', 'userService']));
     }
 
     /**
      * @return View
      */
-    public function getAdmins()
+    public function getAdmins(
+        UserService $userService
+    )
     {
-        $admins = User::admins()->paginate();
-        return view('users::admins.list', compact(['admins']));
+        $admins = $userService->getAdmins()->paginate();
+        return view('users::admins.list', compact(['admins', 'userService']));
     }
 
     /**
      * @return View
      */
-    public function getCreateAdmin()
+    public function getCreateAdmin(
+        RoleService $roleService
+    )
     {
-        return view('users::admins.create');
+        $rolesList = $roleService->getRolesList();
+        return view('users::admins.create', compact(['rolesList']));
     }
 
-    public function postCreateAdmin(Request $request)
+    public function postCreateAdmin(
+        CreateAdminRequest $request,
+        UserRepository $userRepository,
+        UserProfileRepository $userProfileRepository
+    )
     {
-        $vdata = $request->except('_token');
-        $data = $request->except('_token', 'password_confirmation');
-
-        $rules = array_merge([
-            'username' => 'required|max:255|unique:users,username',
-            'email' => 'required|email|max:255|unique:users,email',
-            'role_id' => 'required|exists:roles,id',
-            'membership_id' => 'sometimes|exists:memberships,id',
-            'status' => 'required',
-            'password' => 'required|min:6|max:255',
-            'password_confirmation' => 'min:6|max:255|same:password',
-        ]);
-        $validator = \Validator::make($vdata, $rules);
-        if ($validator->fails()) return redirect()->back()->with('errors', $validator->errors())->withInput();
-
-        $user = User::create($data);
-        if ($user && $user->addProfile()) {
-            return redirect('/admin/users/admins')->with('message', "Admin Created Successfully !!!");
+        $requestData = $request->except('_token', 'password_confirmation');
+        //TODO remove membership from users table
+        $requestData['membership_id'] = 0;
+        $user = $userRepository->create($requestData);
+        if ($user && $userProfileRepository->createProfile($user->id)) {
+            return redirect('/admin/users/admins')->with('message', "Admin has been created successfully !!!");
         }
 
         return redirect()->back()->with('error', 'Admin not created,Please try again');
@@ -88,39 +70,33 @@ class UserController extends Controller
     /**
      * @return View
      */
-    public function getEditAdmin($id)
+    public function getEditAdmin(
+        Request $request,
+        UserService $userService,
+        RoleService $roleService
+    )
     {
-        $admin = User::admins()->where('id', $id)->first();
-
+        $rolesList = $roleService->getRolesList();
+        $admin = $userService->getAdmin($request->id);
         if (!$admin) abort(404);
 
-        return view('users::admins.edit', compact(['admin']));
+        return view('users::admins.edit', compact(['admin', 'rolesList']));
     }
 
-    public function postEditAdmin($id, Request $request)
+    public function postEditAdmin(
+        UserService $userService,
+        EditAdminRequest $request,
+        UserRepository $userRepository
+    )
     {
-        $admin = User::admins()->where('id', $id)->first();
-
+        $admin = $userService->getAdmin($request->id);
         if (!$admin) abort(404);
 
-        $vdata = $request->except('_token');
-        $data = $request->except('_token', 'password_confirmation');
+        $requestData = $request->except('_token', 'password_confirmation');
 
-        $rules = array_merge([
-            'username' => 'required|max:255|unique:users,username,' . $admin->id, ',id',
-            'email' => 'required|email|max:255|unique:users,email,' . $admin->id, ',id',
-            'role_id' => 'required|exists:roles,id',
-            'membership_id' => 'sometimes|exists:memberships,id',
-            'status' => 'required',
-            'password' => 'sometimes|min:6|max:255',
-            'password_confirmation' => 'sometimes|min:6|max:255|same:password',
-        ]);
-        $validator = \Validator::make($vdata, $rules);
-        if ($validator->fails()) return redirect()->back()->with('errors', $validator->errors())->withInput();
+        if (empty($requestData['password'])) $requestData['password'] = $admin->password;
 
-        if (empty($data['password'])) $data['password'] = $admin->password;
-
-        $user = $admin->update($data);
+        $user = $userRepository->update($admin->id, $requestData);
         if ($user) {
             return redirect('/admin/users/admins')->with('message', "Admin updated Successfully !!!");
         }
@@ -128,14 +104,16 @@ class UserController extends Controller
         return redirect()->back()->with('error', 'Admin not created,Please try again');
     }
 
-    public function postDeleteAdmin(Request $request)
+    public function postDeleteAdmin(
+        DeleteAdminRequest $request,
+        UserService $userService,
+        UserRepository $userRepository
+    )
     {
         $result = false;
-        if ($request->slug) {
-            $result = User::admins()->where('id', $request->slug)->first();
-            if ($result) {
-                $result = $result->delete();
-            }
+        $user = $userService->getAdmin($request->slug);
+        if ($user) {
+            $result = $userRepository->delete($user->id) ? true : false;
         }
         return \Response::json(['success' => $result]);
     }
@@ -146,23 +124,15 @@ class UserController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function sendPassword($id, Request $request)
+    public function sendPassword(
+        Request $request,
+        UserRepository $userRepository,
+        UserService $userService
+    )
     {
-        $user = User::find($id);
-
+        $user = $userRepository->find($request->id);
         if ($user) {
-            $random = str_random(10);
-            $user->password = bcrypt($random);
-            $user->save();
-
-            $emailData = [
-                'template' => 'emails.auth.password',
-                'data' => ['username' => $user->username, 'password' => $random],
-                'usage' => $user,
-                'subject' => 'New password sent to member.'
-            ];
-            \Event::fire(new sendEmailEvent($this->auth->user(), $emailData));
-
+            $userService->sendPassword($user);
             return redirect()->back()->with([
                 'flash' => [
                     'message' => trans('New Password sent successfully.'),
@@ -183,6 +153,7 @@ class UserController extends Controller
      */
     public function getCreate(Request $request)
     {
+        //TODO change functionality, move with cms forms
         $formSettings = FormSettings::where('form_id', '58e21be5a8bd8')->first();
         if (!$formSettings) {
             abort(404);
@@ -199,6 +170,7 @@ class UserController extends Controller
      */
     public function postCreate(Request $request)
     {
+        //TODO change functionality, move with cms forms
         $vdata = $request->except('_token');
         $data = $request->except('_token', 'password_confirmation', 'custom', 'plugin', 'form_setting_id', 'customs');
         $customData = $request->custom;
@@ -278,6 +250,7 @@ class UserController extends Controller
      */
     public function getEdit($id)
     {
+        //TODO change functionality, move with cms forms
         $user = User::find($id);
         $formSettings = FormSettings::where('form_id', '58e21be5a8bd8')->first();
         if ($formSettings) {
@@ -291,6 +264,7 @@ class UserController extends Controller
 
     public function postEdit(Request $request)
     {
+        //TODO change functionality, move with cms forms
         $user = User::find($request->id);
         //dd($validator->fails());
         if (!$user) abort(404);
@@ -375,29 +349,21 @@ class UserController extends Controller
     }
 
 
-    public function postDelete(Request $request)
+    public function postDelete(
+        DeleteAdminRequest $request,
+        UserService $userService
+    )
     {
-        $result = false;
-        if ($request->slug) {
-            $result = User::find($request->slug);
-
-//            if (!$user)
-//                return redirect()->back();
-//
-//            if (!User::ranking($user))
-//                return redirect()->back();
-            if ($result) {
-//                $result->revokeAllRoles();
-                File::deleteDirectory(base_path() . User::$uploadPath . $request->slug);
-                $result = $result->delete();
-            }
-        }
+        $result = $userService->deleteUser($request->slug);
         return \Response::json(['success' => $result]);
     }
 
-    public function getShow(Request $request)
+    public function getShow(
+        Request $request,
+        UserRepository $userRepository
+    )
     {
-        $user = User::find($request->id);
+        $user = $userRepository->find($request->id);
         if (!$user) {
             abort(404);
         }
@@ -411,6 +377,7 @@ class UserController extends Controller
      */
     public function editAdmins($id, Request $request)
     {
+        //TODO check this action or delete
         //get data for view
         $roles = Roles::all()->pluck('name', 'id');
         $user = User::find($id);
@@ -448,46 +415,25 @@ class UserController extends Controller
         return view('users::admins.edit', compact('user', 'roles'));
     }
 
-    /**
-     * @param $id
-     * @param Request $request
-     * @return $this|\Illuminate\Http\RedirectResponse
-     */
-    public function editMemberPass($id, Request $request)
-    {
-        if ($request->isMethod('post')) {
-            $validator = Validator::make(
-                $request->all(), User::editPasswordRule()
-            );
-
-            if ($validator->fails()) {
-                return redirect()->back()->withErrors($validator->errors());
-            }
-
-            User::changePassword($id, $request->get('password'));
-            $users = $this->user->getAllUsers();
-            return redirect('admin/users')->with('users', $users);
-        }
-    }
 
     /**
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function deleteMember($id)
+    public function deleteMember(
+        Request $request,
+        UserRepository $userRepository,
+        UserService $userService
+    )
     {
-        $user = User::find($id);
-
+        $user = $userRepository->find($request->id);
         if (!$user)
             return redirect()->back();
 
-        if (!User::ranking($user))
+        if (!$userService->ranking($user))
             return redirect()->back();
 
-        $user->revokeAllRoles();
-        $user->delete();
-        File::deleteDirectory(base_path() . User::$uploadPath . $id);
-
+        $userRepository->deleteUser($user->id);
         return redirect()->back();
     }
 
@@ -495,33 +441,23 @@ class UserController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function postResetPassword(Request $request)
+    public function postResetPassword(
+        Request $request,
+        UserService $userService
+    )
     {
+
         $email = $request->get('email');
-        if ($user = User::getUserByEmail($email)) {
-            $emailData = [
-                'template' => 'emails.auth.reset',
-                'data' => ['username' => $user->username],
-                'usage' => $user,
-                'subject' => 'Reset Password'
-            ];
-            \Event::fire(new sendEmailEvent($this->auth->user(), $emailData));
-
-            return \Response::json(['data' => true, 'code' => 200, 'error' => false]);
-        }
-
-        return \Response::json(['data' => false, 'code' => 500, 'error' => true]);
+        $response = $userService->resetPassword($email);
+        return \Response::json($response);
     }
 
-    public function getSettings()
+    public function getSettings(
+        RoleService $roleService
+    )
     {
-        $formSettings = FormSettings::where('form_id', '58e21be5a8bd8')->first();
-        if (!$formSettings) {
-            abort(404);
-        }
         $user_id = null;
-        $formSettings = $formSettings->additional_settings;
-//        $blogUnits = $blog->getNotSelectedUnits();
+        $rolesList = $roleService->getRolesList();
         $types = [
             'input' => 'Input',
             'selectbox' => 'Selectbox',
@@ -529,15 +465,12 @@ class UserController extends Controller
             'radio' => 'Radio',
             'textarea' => 'Textarea',
         ];
-
-//        return view('Blogs::edit', compact(['id', 'blog', 'types', 'blogUnits']));
-
-
-        return view('users::admins.settings', compact(['formSettings', 'user_id']));
+        return view('users::admins.settings', compact(['rolesList', 'user_id']));
     }
 
     public function postSettings(Request $request)
     {
+        //TODO check this action or delete
         $data['units'] = $request->custom['units'];
         if (isset($request->customs['units']) && is_array($request->customs['units'])) {
             $data['units'] = array_merge($request->customs['units'], $data['units']);

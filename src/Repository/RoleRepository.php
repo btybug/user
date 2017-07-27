@@ -9,19 +9,19 @@
 namespace Sahakavatar\User\Repository;
 
 use Sahakavatar\Cms\Repositories\GeneralRepository;
-use Sahakavatar\User\User;
+use Sahakavatar\User\Models\Roles;
 
-
-class UserRepository extends GeneralRepository
+class RoleRepository extends GeneralRepository
 {
     public function model()
     {
-        return new User();
+        return new Roles();
     }
 
-    public function getDefaultRoles() {
+    public function getAccessList()
+    {
         $model = $this->model();
-        return $model::$defaultRoles;
+        return $model::$accessList;
     }
 
 }

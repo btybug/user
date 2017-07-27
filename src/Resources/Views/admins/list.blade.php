@@ -1,9 +1,5 @@
-@extends('layouts.mTabs',['index'=>'admins_users'])
+@extends('cms::layouts.mTabs',['index'=>'admins_users'])
 
-@section('parag')
-{!! Breadcrumbs::render('user-admin') !!}
-
-@stop
 @section('tab')
     <div class="row">
         <div class="col-md-12">
@@ -48,12 +44,12 @@
                             </td>
 
                             <td>
-                                {{ \App\helpers\helpers::formatDate($admin->created_at) }}
-                                <p>{{ \App\helpers\helpers::formatTime($admin->created_at) }}</p>
+                                {{ \Sahakavatar\Cms\Helpers\helpers::formatDate($admin->created_at) }}
+                                <p>{{ \Sahakavatar\Cms\Helpers\helpers::formatTime($admin->created_at) }}</p>
                             </td>
                             <td>
                             <span class="pull-left m-r-5">
-                                @if (\Auth::user()->can("users.admins.delete") && \App\Modules\Users\User::ranking($admin->id))
+                                @if (\Auth::user()->can("users.admins.delete") && $userService->ranking($admin->id))
                                     <a data-href="{!! url('/admin/users/admins/delete') !!}"
                                        data-key="{!! $admin->id !!}" data-type="Admin {{ $admin->username }}" class="delete-button btn btn-danger btn-xs"><i
                                                 class="fa fa-trash-o f-s-14 "></i></a>
@@ -67,7 +63,7 @@
                                     <a href="{!! url('/admin/profile',$admin->id)!!}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>
                                 @endif
 
-                                {!! \App\helpers\UserOptions::getOptions($admin) !!}
+                                {!! $userService->getOptions($admin) !!}
                             </td>
                         </tr>
                     @endforeach
@@ -85,7 +81,7 @@
             {!! $admins->render() !!}
         </div>
     </div>
-    @include('_partials.delete_modal')
+    @include('cms::_partials.delete_modal')
 @stop
 @section('CSS')
     {!! Html::style('resources/assets/js/datatable/css/jquery.dataTables.min.css') !!}

@@ -12,7 +12,7 @@
 namespace Sahakavatar\User\Http\Controllers;
 
 use Illuminate\Contracts\Auth\Guard;
-use App\helpers\helpers;
+use Sahakavatar\Cms\Helpers\helpers;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

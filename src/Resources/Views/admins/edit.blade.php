@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('cms::layouts.admin')
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -16,11 +16,7 @@
             </div>
             <div class="form-group">
                 {!! Form::label('role_id','Roles',[])!!}
-                {!! Form::select('role_id',['' => 'Select Role'] + \App\Modules\Users\Models\Roles::pluck('name','id')->toArray(),null,['class'=>'form-control'])!!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('membership_id','Select Membership',[])!!}
-                {!! Form::select('membership_id',['' => 'Select Membership'] + \App\Modules\Users\Models\Membership::pluck('name','id')->toArray(),null,['class'=>'form-control'])!!}
+                {!! Form::select('role_id',['' => 'Select Role'] + $rolesList,null,['class'=>'form-control'])!!}
             </div>
             <div class="form-group">
                 {!! Form::label('status','Status',[])!!}
@@ -34,9 +30,9 @@
                 {!! Form::label('password_confirmation ','Confirm Password',[])!!}
                 {!! Form::password('password_confirmation',['class'=>'form-control','placeholder'=>'Enter Confirm Password'])!!}
             </div>
-            <div class="form-group">
-                @include('users::_partials.form_settings')
-            </div>
+            {{--<div class="form-group">--}}
+                {{--@include('users::_partials.form_settings')--}}
+            {{--</div>--}}
             <div class="form-group">
                 {!! Form::submit('Edit',['class' => 'btn btn-primary']) !!}
             </div>

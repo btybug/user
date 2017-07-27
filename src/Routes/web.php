@@ -36,7 +36,7 @@ Route::group(['domain' => env('DOMAIN')], function () {
             return view('fake');
         });
         Route::post('/fake', function (\Illuminate\Http\Request $request) {
-            $helper = new \App\helpers\helpers();
+            $helper = new \Sahakavatar\Cms\Helpers\helpers();
             $count = $request->get('count_users');
 
             if ($count) {
@@ -73,19 +73,19 @@ Route::group(['domain' => env('DOMAIN')], function () {
         Route::get('/edit/{id}', array('as' => 'admin.users.getEdit', 'uses' => 'UserController@getEdit'));
         Route::post('/edit/{id}', array('as' => 'admin.users.postEdit', 'uses' => 'UserController@postEdit'));
         Route::post('/delete', array('as' => 'admin.users.delete', 'uses' => 'UserController@postDelete'));
-        Route::post('/show/{id}', array('as' => 'admin.users.show', 'uses' => 'UserController@getShow'));
+        Route::get('/show/{id}', array('as' => 'admin.users.show', 'uses' => 'UserController@getShow'));
         Route::get('/settings', array('as' => 'admin.users.settings', 'uses' => 'UserController@getSettings'));
         Route::post('/settings', array('as' => 'admin.users.postSettings', 'uses' => 'UserController@postSettings'));
 
 
 //            Route::get('/site-user', 'UserController@getSiteUsers')->middleware('userHasPerm:users.site_users');
-        Route::get('/sendPassword/{id}', array('as' => 'admin.users.sendPassword', 'uses' => 'UserController@sendPassword'));
+        Route::get('/send-password/{id}', array('as' => 'admin.users.sendPassword', 'uses' => 'UserController@sendPassword'));
         Route::any('/edit-users/{id}', array('as' => 'admin.users.editSiteUsers', 'uses' => 'UserController@getEditUsers'));
         Route::post('/editMemberPass/{id}', array('as' => 'admin.users.editMemberPass', 'uses' => 'UserController@editMemberPass'));
         Route::any('/deleteMember/{id}', array('as' => 'admin.users.deleteMember', 'uses' => 'UserController@deleteMember'))->middleware('userHasPerm:users.site_users.delete');
         Route::any('/showMember/{id}', array('as' => 'admin.users.showMember', 'uses' => 'UserController@showMember'))->middleware('userHasPerm:users.site_users.view');
         //admin members
-        Route::any('/editAdmins/{id}', array('as' => 'admin.users.editAdmins', 'uses' => 'UserController@editAdmins'))->middleware('userHasPerm:users.admins.edit');
+        Route::any('/edit-admins/{id}', array('as' => 'admin.users.editAdmins', 'uses' => 'UserController@editAdmins'))->middleware('userHasPerm:users.admins.edit');
         Route::any('/deleteAdmin/{id}', array('as' => 'admin.users.deleteAdmin', 'uses' => 'UserController@deleteMember'))->middleware('userHasPerm:users.admins.delete');
         Route::any('/showAdmin/{id}', array('as' => 'admin.users.showAdmin', 'uses' => 'UserController@showAdmin'))->middleware('userHasPerm:users.admins.view');
         Route::post('/saveMeta/{id}', array('as' => 'admin.users.saveMeta', 'uses' => 'UserController@saveUserMeta'));
