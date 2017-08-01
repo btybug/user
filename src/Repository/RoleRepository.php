@@ -13,6 +13,10 @@ use Sahakavatar\User\Models\Roles;
 
 class RoleRepository extends GeneralRepository
 {
+    const ACCESS_TO_BOTH = 0;
+    const ACCESS_TO_BACKEND = 1;
+    const ACCESS_TO_FRONTEND = 2;
+
     public function model()
     {
         return new Roles();

@@ -108,10 +108,10 @@ Route::group(['domain' => env('DOMAIN')], function () {
             Route::get('/', 'RolesController@getIndex');
             Route::get('/create', 'RolesController@getCreate');
             Route::post('/create', 'RolesController@postCreate');
-            Route::get('/edit/{slug}', 'RolesController@getEdit');
+            Route::get('/edit/{id}', 'RolesController@getEdit');
             Route::get('/permissions/{slug}', 'RolesController@getPermissions');
             Route::post('/permissions/{slug}', 'RolesController@postPermissions');
-            Route::post('/edit/{slug}', 'RolesController@postEdit');
+            Route::post('/edit/{id}', 'RolesController@postEdit');
             Route::post('/delete', 'RolesController@postDelete');
         });
 

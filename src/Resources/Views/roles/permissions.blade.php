@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('cms::layouts.admin')
 @section('content')
     <ol class="breadcrumb">
         <li><a href="/">Dashboard</a></li>
