@@ -32,7 +32,7 @@ class PermissionRole extends Model
     protected $dates = ['created_at', 'updated_at'];
 
     public function permission(){
-        return $this->hasMany('App\Modules\Modules\Models\AdminPages','id','page_id');
+        return $this->hasMany('Sahakavatar\Modules\Models\Models\AdminPages','id','page_id');
     }
 
     public function roles(){

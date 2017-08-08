@@ -12,7 +12,7 @@
 namespace Sahakavatar\User\Http\Controllers;
 
 use App\Modules\Manage\Models\FrontendPage;
-use App\Modules\Modules\Models\AdminPages;
+use Sahakavatar\Modules\Models\Models\AdminPages;
 use Caffeinated\Shinobi\Models\Permission;
 use Caffeinated\Shinobi\Models\Role;
 use App\Http\Controllers\Controller;

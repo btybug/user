@@ -1,4 +1,4 @@
-@extends('layouts.mTabs',['index'=>'admins_users'])
+@extends('cms::layouts.mTabs',['index'=>'admins_users'])
 
 @section('parag')
     {!! Breadcrumbs::render('user-admin') !!}

@@ -84,10 +84,10 @@
     @include('cms::_partials.delete_modal')
 @stop
 @section('CSS')
-    {!! Html::style('resources/assets/js/datatable/css/jquery.dataTables.min.css') !!}
+    {!! HTML::style('js/datatable/css/jquery.dataTables.min.css') !!}
 @stop
 @section('JS')
-    {!! Html::script('resources/assets/js/datatable/js/jquery.dataTables.min.js') !!}
+    {!! HTML::script('js/datatable/js/jquery.dataTables.min.js') !!}
 
 @stop
 

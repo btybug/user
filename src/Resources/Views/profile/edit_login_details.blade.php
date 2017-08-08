@@ -1,4 +1,4 @@
-@extends('layouts.mTabs',['index'=>'edit_profile'])
+@extends('cms::layouts.mTabs',['index'=>'edit_profile'])
 @section('tab')
     <div class="container-fluid">
         <div class="row">
@@ -46,5 +46,5 @@
 @stop
 
 @section("CSS")
-    {!! HTML::style('/resources/assets/libs/animate/css/animate.css') !!}
+    {!! HTML::style('libs/animate/css/animate.css') !!}
 @stop

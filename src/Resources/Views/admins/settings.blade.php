@@ -56,10 +56,10 @@
             margin-top: 15px;
         }
     </style>
-    {!! HTML::style('/resources/assets/js/select2/css/select2.min.css') !!}
+    {!! HTML::style('js/select2/css/select2.min.css') !!}
 @stop
 @section('JS')
-    {!! HTML::script('/resources/assets/js/select2/js/select2.full.js') !!}
+    {!! HTML::script('js/select2/js/select2.full.js') !!}
     {!! HTML::script("/resources/assets/js/UiElements/bb_styles.js?v.5") !!}
     <script>
         $(document).ready(function () {

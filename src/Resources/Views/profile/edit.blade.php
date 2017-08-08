@@ -1,8 +1,8 @@
-@extends('layouts.mTabs',['index'=>'edit_profile'])
+@extends('cms::layouts.mTabs',['index'=>'edit_profile'])
 @section('tab')
 
 @stop
 
 @section("CSS")
-    {!! HTML::style('/resources/assets/libs/animate/css/animate.css') !!}
+    {!! HTML::style('libs/animate/css/animate.css') !!}
 @stop

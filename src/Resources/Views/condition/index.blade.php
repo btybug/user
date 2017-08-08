@@ -1,4 +1,4 @@
-@extends('layouts.mTabs',['index'=>'role_membership'])
+@extends('cms::layouts.mTabs',['index'=>'role_membership'])
 @section('tab')
     <div class="row">
         <div class="col-sm-12">
@@ -45,5 +45,5 @@
             </div>
         </div>
     </div>
-    @include('_partials.delete_modal')
+    @include('cms::_partials.delete_modal')
 @stop
