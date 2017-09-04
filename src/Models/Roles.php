@@ -62,11 +62,7 @@ class Roles extends Model
         return $this->hasMany('App\Modules\Backend\MenuVariation', 'user_role', 'id');
     }
 
-    public static function getRolesSeperetedWith($seperator = ',')
-    {
-        $data = self::where('slug', '!=', 'superadmin')->pluck('slug', 'slug')->toArray();
-        return implode($seperator, $data);
-    }
+
 
     public function getAccessName() {
         return self::$accessList[$this->access];

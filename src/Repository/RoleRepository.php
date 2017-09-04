@@ -28,4 +28,9 @@ class RoleRepository extends GeneralRepository
         return $model::$accessList;
     }
 
+    public function getRolesSeperetedWith()
+    {
+        return $this->model()->where('slug', '!=', 'superadmin')->pluck('slug', 'slug')->toArray();
+    }
+
 }

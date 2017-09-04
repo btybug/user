@@ -29,4 +29,10 @@ class RoleService extends GeneralService
         return $this->roleRepository->model()->pluck('name', 'id')->toArray();
     }
 
+    public function getRolesSeperetedWith($seperator = ',')
+    {
+        $data = $this->roleRepository->getRolesSeperetedWith();
+        return implode($seperator, $data);
+    }
+
 }

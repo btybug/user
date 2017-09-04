@@ -51,10 +51,16 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes()
     {
         Route::group([
+            'domain' => (string)env('DOMAIN'),
             'middleware' => 'web',
-            'namespace'  => $this->namespace,
         ], function ($router) {
-            require __DIR__.'/../Routes/web.php';
+            Route::group([
+                'middleware' => ['admin:Users'],
+                'prefix' => 'admin/users',
+                'namespace' => $this->namespace,
+            ], function ($router) {
+                require __DIR__.'/../Routes/web.php';
+            });
         });
     }
 

@@ -77,4 +77,9 @@ class PermissionRoleRepository extends GeneralRepository
         }
     }
 
+    public function getBackendPagesWithRoleAndPage($roleID,$pageID)
+    {
+        return $this->model()->where('role_id', $roleID)->where('page_id', $pageID)->where('page_type', 'back')->first();
+    }
+
 }
