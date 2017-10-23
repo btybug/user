@@ -1,53 +1,55 @@
 <?php
+
 namespace Sahakavatar\User\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
-class AuthenticateAdmin{
+class AuthenticateAdmin
+{
 
-	/**
-	 * The Guard implementation.
-	 *
-	 * @var Guard
-	 */
-	protected $auth;
+    /**
+     * The Guard implementation.
+     *
+     * @var Guard
+     */
+    protected $auth;
 
-	/**
-	 * Create a new filter instance.
-	 *
-	 * @param  Guard  $auth
-	 * @return void
-	 */
-	public function __construct(Guard $auth)
-	{
-		$this->auth = $auth;
-	}
+    /**
+     * Create a new filter instance.
+     *
+     * @param  Guard $auth
+     * @return void
+     */
+    public function __construct(Guard $auth)
+    {
+        $this->auth = $auth;
+    }
 
-	/**
-	 * Handle an incoming request.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \Closure  $next
-	 * @return mixed
-	 */
-	public function handle($request, Closure $next)
-	{
-		if($this->auth->guest()){
-			return redirect()->guest('/');
-		}
-
-		if (!$this->auth->user()->isUser()) {
-			return $next($request);
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Closure $next
+     * @return mixed
+     */
+    public function handle($request, Closure $next)
+    {
+        if ($this->auth->guest()) {
+            return redirect()->guest('/');
         }
 
- 		if ($request->ajax()) {
-			return response('Unauthorized.', 401);
-		} else {
-			return redirect()->guest('/');
-		}
+        if (!$this->auth->user()->isUser()) {
+            return $next($request);
+        }
 
-		return $next($request);
-	}
+        if ($request->ajax()) {
+            return response('Unauthorized.', 401);
+        } else {
+            return redirect()->guest('/');
+        }
+
+        return $next($request);
+    }
 
 }

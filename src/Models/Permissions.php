@@ -2,10 +2,8 @@
 
 namespace Sahakavatar\User\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Auth\Authenticatable;
 use Caffeinated\Shinobi\Traits\ShinobiTrait;
-use Auth;
+use Illuminate\Database\Eloquent\Model;
 
 class Permissions extends Model
 {
@@ -31,36 +29,42 @@ class Permissions extends Model
      */
     protected $dates = ['created_at', 'updated_at'];
 
-    public function role_user(){
-        return $this->hasMany('App\Modules\Users\Models\RoleUser','role_id','id');
-    }
+    public static function getPermissionID($slug)
+    {
+        $p = self::where('slug', $slug)->first();
 
-    public function permission_role(){
-        return $this->hasMany('App\Modules\Users\Models\PermmisionRole','permission_id','id');
-    }
-    public function memberships(){
-        return $this->belongsToMany('App\Modules\Users\Models\Membership','membership_permission','permission_id','membership_id');
-    }
-
-    public static function getPermissionID($slug){
-        $p = self::where('slug',$slug)->first();
-
-        if($p){
+        if ($p) {
             return $p->id;
-        }else{
+        } else {
             return false;
         }
     }
 
-    public static function getChilds($perm_id){
-        $childs = self::where('parent',$perm_id)->get();
+    public static function getChilds($perm_id)
+    {
+        $childs = self::where('parent', $perm_id)->get();
         $data = [];
 
-        foreach($childs as $child){
+        foreach ($childs as $child) {
             $data[] = $child->id;
-            $data = @array_merge($data,self::getChilds($child->id));
+            $data = @array_merge($data, self::getChilds($child->id));
         }
 
         return $data;
+    }
+
+    public function role_user()
+    {
+        return $this->hasMany('App\Modules\Users\Models\RoleUser', 'role_id', 'id');
+    }
+
+    public function permission_role()
+    {
+        return $this->hasMany('App\Modules\Users\Models\PermmisionRole', 'permission_id', 'id');
+    }
+
+    public function memberships()
+    {
+        return $this->belongsToMany('App\Modules\Users\Models\Membership', 'membership_permission', 'permission_id', 'membership_id');
     }
 }

@@ -23,9 +23,9 @@
 
 
 <div class="col-md-3">
-    {!! Form::open(array('route' => ['admin.users.editAdmins', $user->id], 'method' => 'POST','class' => 'form')) !!}
-    {!! Form::button('save',['class' => 'btn btn-success save-edit']) !!}
-            <!-- begin panel -->
+{!! Form::open(array('route' => ['admin.users.editAdmins', $user->id], 'method' => 'POST','class' => 'form')) !!}
+{!! Form::button('save',['class' => 'btn btn-success save-edit']) !!}
+<!-- begin panel -->
     <div class="panel panel-default m-t-5" data-sortable-id="form-stuff-4">
         <div class="panel-heading bg-black-darker text-white">Publishing</div>
         <div class="panel-body">
@@ -85,31 +85,31 @@
 <div class="clearfix p-10">
 </div>
 <div class="col-sm-9">
-   {!! \Eventy::filter('toggle.tabs', ['user'=>$user,'page'=>'edit_user']) !!}
+    {!! \Eventy::filter('toggle.tabs', ['user'=>$user,'page'=>'edit_user']) !!}
 
 </div>
 
 {{--<ul class="nav nav-tabs grybg" role="tablist">--}}
-    {{--<li role="presentation" class="active"><a href="#profileTab" aria-controls="profileTab" role="tab"--}}
-                                              {{--data-toggle="tab">Profile</a></li>--}}
-    {{--<li role="presentation"><a href="#login" aria-controls="login" role="tab" data-toggle="tab">Login</a></li>--}}
+{{--<li role="presentation" class="active"><a href="#profileTab" aria-controls="profileTab" role="tab"--}}
+{{--data-toggle="tab">Profile</a></li>--}}
+{{--<li role="presentation"><a href="#login" aria-controls="login" role="tab" data-toggle="tab">Login</a></li>--}}
 {{--</ul>--}}
 
 {{--<div class="tab-content ">--}}
 
-    {{--<div role="tabpanel" class="tab-pane fade in active p-15 bg-silver" id="profileTab">--}}
-        {{--<div class="col-sm-7 p-10 bg-white">--}}
-            {{--{!! sc('getCoreForm',['id' => '2','raw_id' => $user->profile->id,'update' => true]) !!}--}}
-        {{--</div>--}}
-        {{--<div class="clearfix"></div>--}}
-    {{--</div>--}}
+{{--<div role="tabpanel" class="tab-pane fade in active p-15 bg-silver" id="profileTab">--}}
+{{--<div class="col-sm-7 p-10 bg-white">--}}
+{{--{!! sc('getCoreForm',['id' => '2','raw_id' => $user->profile->id,'update' => true]) !!}--}}
+{{--</div>--}}
+{{--<div class="clearfix"></div>--}}
+{{--</div>--}}
 
-    {{--<div role="tabpanel" class="tab-pane fade in p-15 bg-silver" id="login">--}}
-        {{--<div class="col-sm-7 p-10 bg-white">--}}
-            {{--{!! sc('getCoreForm',['id' => '18','raw_id' => $user->id,'update' => true]) !!}--}}
-        {{--</div>--}}
-        {{--<div class="clearfix"></div>--}}
-    {{--</div>--}}
+{{--<div role="tabpanel" class="tab-pane fade in p-15 bg-silver" id="login">--}}
+{{--<div class="col-sm-7 p-10 bg-white">--}}
+{{--{!! sc('getCoreForm',['id' => '18','raw_id' => $user->id,'update' => true]) !!}--}}
+{{--</div>--}}
+{{--<div class="clearfix"></div>--}}
+{{--</div>--}}
 
 {{--</div>--}}
 {!! Form::close() !!}

@@ -3,7 +3,8 @@
 @section('tab')
     <div class="row">
         <div class="col-md-12">
-            <a href="{!! url("admin/users/admins/create") !!}" class="btn btn-info pull-right"><i class="fa fa-plus"></i> Create Admin</a>
+            <a href="{!! url("admin/users/admins/create") !!}" class="btn btn-info pull-right"><i
+                        class="fa fa-plus"></i> Create Admin</a>
         </div>
         <div class="col-md-12 table-responsive p-0">
             <table class="table table-bordered">
@@ -51,16 +52,19 @@
                             <span class="pull-left m-r-5">
                                 @if (\Auth::user()->can("users.admins.delete") && $userService->ranking($admin->id))
                                     <a data-href="{!! url('/admin/users/admins/delete') !!}"
-                                       data-key="{!! $admin->id !!}" data-type="Admin {{ $admin->username }}" class="delete-button btn btn-danger btn-xs"><i
+                                       data-key="{!! $admin->id !!}" data-type="Admin {{ $admin->username }}"
+                                       class="delete-button btn btn-danger btn-xs"><i
                                                 class="fa fa-trash-o f-s-14 "></i></a>
                                 @endif
                                 </span>
                                 @if(Auth::user()->can('users.admins.edit'))
-                                    <a href="{!! url('/admin/users/admins/edit',$admin->id)!!}" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i></a>
+                                    <a href="{!! url('/admin/users/admins/edit',$admin->id)!!}"
+                                       class="btn btn-warning btn-xs"><i class="fa fa-edit"></i></a>
                                 @endif
 
                                 @if(Auth::user()->can('users.admins.view'))
-                                    <a href="{!! url('/admin/profile',$admin->id)!!}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>
+                                    <a href="{!! url('/admin/profile',$admin->id)!!}" class="btn btn-primary btn-xs"><i
+                                                class="fa fa-eye"></i></a>
                                 @endif
 
                                 {!! $userService->getOptions($admin) !!}

@@ -8,14 +8,15 @@
             <div class="col-md-9">
                 @foreach($roles as $role)
                     @if(!in_array($role->id,\App\Modules\Users\User::$defaultRoles))
-                    <div class="checkbox pull-left perm-role">
-                        <label>
-                            <input type="checkbox" data-current="{!! $parent->id !!}" data-roleid="{!! $role->id !!}"
-                                   data-permid="{!! $parent->id !!}" class="show-child-perm"
-                                   name="permission[{!!$role->id!!}][{!!$parent->id!!}]"
-                                   value='1' {!! (in_array($role->id.'-'.$parent->id,$permission_role)) ? 'checked' : '' !!}> {!! $role->name !!}
-                        </label>
-                    </div>
+                        <div class="checkbox pull-left perm-role">
+                            <label>
+                                <input type="checkbox" data-current="{!! $parent->id !!}"
+                                       data-roleid="{!! $role->id !!}"
+                                       data-permid="{!! $parent->id !!}" class="show-child-perm"
+                                       name="permission[{!!$role->id!!}][{!!$parent->id!!}]"
+                                       value='1' {!! (in_array($role->id.'-'.$parent->id,$permission_role)) ? 'checked' : '' !!}> {!! $role->name !!}
+                            </label>
+                        </div>
                     @endif
                 @endforeach
             </div>
@@ -30,17 +31,17 @@
                     <div class="col-md-9">
                         @foreach($roles as $role)
                             @if(!in_array($role->id,\App\Modules\Users\User::$defaultRoles))
-                            <div class="checkbox pull-left perm-role">
-                                @if(in_array($role->id.'-'.$parent->id,$permission_role))
-                                    <label>
-                                        <input type="checkbox" data-current="{!! $permission->id !!}"
-                                               data-roleid="{!! $role->id !!}" data-permid="{!! $permission->id !!}"
-                                               class="show-child-perm"
-                                               name="permission[{!!$role->id!!}][{!!$permission->id!!}]"
-                                               value='1' {!! (in_array($role->id.'-'.$permission->id,$permission_role)) ? 'checked' : '' !!}> {!! $role->name !!}
-                                    </label>
-                                @endif
-                            </div>
+                                <div class="checkbox pull-left perm-role">
+                                    @if(in_array($role->id.'-'.$parent->id,$permission_role))
+                                        <label>
+                                            <input type="checkbox" data-current="{!! $permission->id !!}"
+                                                   data-roleid="{!! $role->id !!}" data-permid="{!! $permission->id !!}"
+                                                   class="show-child-perm"
+                                                   name="permission[{!!$role->id!!}][{!!$permission->id!!}]"
+                                                   value='1' {!! (in_array($role->id.'-'.$permission->id,$permission_role)) ? 'checked' : '' !!}> {!! $role->name !!}
+                                        </label>
+                                    @endif
+                                </div>
                             @endif
                         @endforeach
                     </div>

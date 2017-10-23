@@ -4,20 +4,17 @@ namespace Sahakavatar\User\Http\Controllers\Auth;
 
 //use App\Events\sendEmailEvent;
 use App\Http\Controllers\Controller;
-use Sahakavatar\Console\Repository\AdminPagesRepository;
-use Sahakavatar\Modules\Models\AdminPages;
-use Sahakavatar\Settings\Models\SendEmail;
-use Sahakavatar\User;
-//use Sahakavatar\Settings\Repository\AdminsettingRepository as Settings;
-//use App\Repositories\EmailsRepository;
-use Auth;
-use Event;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Notify;
 use Redirect;
+use Sahakavatar\Console\Repository\AdminPagesRepository;
+use Sahakavatar\Modules\Models\AdminPages;
 use Validator;
+
+//use Sahakavatar\Settings\Repository\AdminsettingRepository as Settings;
+//use App\Repositories\EmailsRepository;
 
 
 /**
@@ -86,7 +83,8 @@ class AuthController extends Controller
         return view('frontend.login', compact('enable_reg'));
     }
 
-    public function getAdminLogin() {
+    public function getAdminLogin()
+    {
         return view('admin.login');
     }
 
@@ -100,15 +98,15 @@ class AuthController extends Controller
         $request->merge([$field => $request->input('usernameOremail')]);
         $error = trans('These credentials do not match our records.');
         $user = User::where($field, $request->$field)->first();
-        if($user && \Hash::check($request->password, $user->password) && $user->role) {
+        if ($user && \Hash::check($request->password, $user->password) && $user->role) {
             if ($this->auth->attempt(array_add($request->only($field, 'password'), 'status', 'active'), $request->has('remember'))) {
                 $user = \Auth::getProvider()->retrieveByCredentials($request->only($field, 'password'));
                 return redirect('/admin');
             }
-        }else {
+        } else {
             $error = trans('Access denied');
         }
-        if ($user-> status != 'active') {
+        if ($user->status != 'active') {
             $error = trans('Please activate your account first.');
         }
 
@@ -160,7 +158,7 @@ class AuthController extends Controller
         }
 
         $vdata = $request->except('_token');
-        $data = $request->except('_token','password_confirmation');
+        $data = $request->except('_token', 'password_confirmation');
 
         $rules = array_merge([
             'username' => 'required|max:255|unique:users,username',
@@ -170,26 +168,25 @@ class AuthController extends Controller
             'password_confirmation' => 'min:6|max:255|same:password',
         ]);
         $validator = \Validator::make($vdata, $rules);
-        if ($validator->fails()) return redirect()->back()->with('errors',$validator->errors())->withInput();
+        if ($validator->fails()) return redirect()->back()->with('errors', $validator->errors())->withInput();
 
         $user = new User();
         $data['status'] = 'inactive';
-        $data['token'] = str_replace("/","",bcrypt(uniqid()));
+        $data['token'] = str_replace("/", "", bcrypt(uniqid()));
         $user = User::create($data);
-        if($user && $user->addProfile()){
+        if ($user && $user->addProfile()) {
             $emailData = [
                 'template' => 'emails.auth.activate',
-                'data' => ['username' => $user->username, 'token' => $user->token,'subject' => 'Activate account.'],
+                'data' => ['username' => $user->username, 'token' => $user->token, 'subject' => 'Activate account.'],
                 'usage' => $user,
                 'subject' => 'Activate account.'
             ];
             if ($this->settings->getSystemLoginReg('email_activation')) {
-                try{
-                    \Mail::queue('emails.auth.activate', $emailData['data'], function ($message) use ($user)
-                    {
+                try {
+                    \Mail::queue('emails.auth.activate', $emailData['data'], function ($message) use ($user) {
                         $message->to($user->email);
                     });
-                }catch (\Exception $exception){
+                } catch (\Exception $exception) {
                     dd($exception);
                 }
             }
@@ -222,18 +219,17 @@ class AuthController extends Controller
             $user->update(['status' => 'active', 'token' => '']);
             $emailData = [
                 'template' => 'emails.auth.welcome',
-                'data' => ['username' => $user->username,'subject' => 'Welcome to site.'],
+                'data' => ['username' => $user->username, 'subject' => 'Welcome to site.'],
                 'usage' => $user,
                 'subject' => 'Welcome to site.'
             ];
 
             if ($this->settings->getSystemLoginReg('email_on_register')) {
-                try{
-                    \Mail::queue($emailData['template'], $emailData['data'], function ($message) use ($user)
-                    {
+                try {
+                    \Mail::queue($emailData['template'], $emailData['data'], function ($message) use ($user) {
                         $message->to($user->email);
                     });
-                }catch (\Exception $exception){
+                } catch (\Exception $exception) {
                     dd($exception);
                 }
             }
@@ -440,7 +436,7 @@ class AuthController extends Controller
 
         return back()
             ->withInput($request->only('username', 'remember'))
-            ->with(['message' => $error,'class' => 'alert-danger']);
+            ->with(['message' => $error, 'class' => 'alert-danger']);
     }
 
     /**

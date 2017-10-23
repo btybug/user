@@ -1,6 +1,6 @@
 {!! Form::open(array('route' => ['profile.update'], 'method' => 'POST','class' => 'form','files' => true)) !!}
 
-<input type="hidden" name="category" value="{!! $form !!}" />
+<input type="hidden" name="category" value="{!! $form !!}"/>
 @if(count($fields) > 0)
     @foreach($fields as $field)
         <div class="form-group">
@@ -18,7 +18,7 @@
             @endif
         </div>
     @endforeach
-    <input type="submit" class="btn btn-success pull-left m-b-10 m-r-10" value="Update" />
+    <input type="submit" class="btn btn-success pull-left m-b-10 m-r-10" value="Update"/>
 @endif
 
 <a href="{!! url('/')!!}" class="btn btn-primary pull-left m-b-10"> Back </a>

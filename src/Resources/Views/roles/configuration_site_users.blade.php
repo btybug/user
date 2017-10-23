@@ -47,7 +47,7 @@
                     <td>
                         <div style="max-width: 100px;overflow: hidden;height: 50px;">
                             @if($group->icon)
-                                <img src="{!! $group->icon !!}" width="50" />
+                                <img src="{!! $group->icon !!}" width="50"/>
                             @else
                                 No Icon
                             @endif
@@ -73,7 +73,7 @@
                         >
                             <i class="fa fa-edit"></i>
                         </button>
-                        
+
                     </td>
                 </tr>
             @endforeach
@@ -90,56 +90,56 @@
     {!! HTML::script('/public/libs/bootstrap-editable/js/bootstrap-editable.min.js') !!}
     <script>
 
-        $('document').ready(function(){
+        $('document').ready(function () {
             $.fn.editable.defaults.mode = 'inline';
             $('.editable').editable({
                 url: '/admin/themes/classes/edit',
-                params:function(params) {
+                params: function (params) {
                     params._token = $('#token').val();
                     return params;
                 },
-                send:'always',
+                send: 'always',
                 ajaxOptions: {
                     dataType: 'html'
-                },success: function(response, newValue) {
+                }, success: function (response, newValue) {
                     response = JSON.parse(response);
-                    if(response.result == false) return response.msg; //msg will be shown in editable form
+                    if (response.result == false) return response.msg; //msg will be shown in editable form
                 }
             });
 
 //    $('.new-text-style').click(function(){
 //        $('#AddNewClass').modal();
 //    });
-            $('.edit-class').on('click',function(){
-                var id=$(this).attr('data-id');
-                var title=$(this).attr('data-title');
-                var slug=$(this).attr('data-slug');
-                var description=$(this).attr('data-description');
-                var icon=$(this).attr('data-icon');
+            $('.edit-class').on('click', function () {
+                var id = $(this).attr('data-id');
+                var title = $(this).attr('data-title');
+                var slug = $(this).attr('data-slug');
+                var description = $(this).attr('data-description');
+                var icon = $(this).attr('data-icon');
 
                 $('#edit_class_id').empty();
                 $('#title').val(title);
                 $('#slug').val(slug);
                 $('#description').text(description);
 
-                if(icon != ''){
+                if (icon != '') {
                     $('<img>').attr({
                         src: icon,
                         id: 'role-icon'
                     }).appendTo('.imagepreview')
-                }else{
+                } else {
                     $('#role-icon').remove();
                 }
 
-                $('form').append($('<input/>',{
-                    type:'hidden',
-                    name:'id',
-                    value:id
+                $('form').append($('<input/>', {
+                    type: 'hidden',
+                    name: 'id',
+                    value: id
                 }));
 
             });
 
-            $('.btnadd').click(function(){
+            $('.btnadd').click(function () {
                 $('#hidden-id').remove();
                 $('#role-icon').remove();
                 $('#description').text('');

@@ -34,43 +34,43 @@
 @include('tools::common_inc')
 
 @push('javascript')
-<script>
-    $(function () {
-        $('#tpl-table').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: '/admin/account/notifications/data',
-            dom: 'frtip',
-            pageLength: '50',
-            columns: {!! $columns!!}
-        });
-    });
-
-    $(document).ready(function () {
-
-        $("#delete_bulk").click(function () {
-            var r = confirm("Are you sure to delete selected?")
-            if (r == true) {
-                deleteSelected('/admin/account/notifications/delete-bulk', '/admin/account/notifications');
-            }
+    <script>
+        $(function () {
+            $('#tpl-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '/admin/account/notifications/data',
+                dom: 'frtip',
+                pageLength: '50',
+                columns: {!! $columns!!}
+            });
         });
 
-        $("#mark_bulk").click(function () {
-            vals = '';
-            $('.del_select').each(function () {
-                if ($(this).is(":checked")) {
-                    vals += ',' + $(this).val();
+        $(document).ready(function () {
+
+            $("#delete_bulk").click(function () {
+                var r = confirm("Are you sure to delete selected?")
+                if (r == true) {
+                    deleteSelected('/admin/account/notifications/delete-bulk', '/admin/account/notifications');
                 }
             });
-            var afterDone = function () {
-               location.reload();
-            }
-            postAjax('/admin/account/notifications/mark-read-bulk', {'vals': vals}, afterDone);
+
+            $("#mark_bulk").click(function () {
+                vals = '';
+                $('.del_select').each(function () {
+                    if ($(this).is(":checked")) {
+                        vals += ',' + $(this).val();
+                    }
+                });
+                var afterDone = function () {
+                    location.reload();
+                }
+                postAjax('/admin/account/notifications/mark-read-bulk', {'vals': vals}, afterDone);
+
+            });
+
 
         });
-
-
-    });
-</script>
+    </script>
 @endpush
 

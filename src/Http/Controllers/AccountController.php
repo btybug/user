@@ -2,8 +2,8 @@
 
 namespace Sahakavatar\User\Http\Controllers;
 
-use Sahakavatar\Cms\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
+use Sahakavatar\Cms\Http\Controllers\Controller;
 use Sahakavatar\User\Http\Requests\Account\ChangeRegistrationRequest;
 use Sahakavatar\User\Http\Requests\Account\SaveAccountRequest;
 use Sahakavatar\User\Repository\UserRepository;

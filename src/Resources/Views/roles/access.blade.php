@@ -32,7 +32,7 @@
                     </script>
                     <!-- END Item template -->
 
-                    <input type="hidden" id="baseUrl" value="{{URL()}}" />
+                    <input type="hidden" id="baseUrl" value="{{URL()}}"/>
                     <div class="col-md-7">
                         <div class="panel panel-default">
                             <div class="panel-heading bg-black-darker text-white">{!! $role->name !!} Permissions</div>
@@ -61,7 +61,7 @@
     {!! HTML::style('/public/css/menu.css?v=0.9') !!}
     {!! HTML::style('/public/css/page.css?v=0.13') !!}
     <style>
-        .item-actions{
+        .item-actions {
             display: block;
         }
     </style>
@@ -75,8 +75,8 @@
 
     {!! HTML::script('public/js/page.js?v=0.62') !!}
     <script>
-        $(function() {
-            $('body').on('click','.edit-btn',function(){
+        $(function () {
+            $('body').on('click', '.edit-btn', function () {
                 var permID = $(this).attr('data-perm');
                 var roleID = $(this).attr('data-role');
                 var token = $('#token').val();
@@ -101,7 +101,7 @@
             });
 
 
-            $('body').on('click','.activate-item',function(){
+            $('body').on('click', '.activate-item', function () {
                 var permID = $(this).attr('data-perm');
                 var roleID = $(this).attr('data-role');
                 var child = $(this).attr('data-child');
@@ -119,11 +119,11 @@
                     success: function (data) {
                         if (data.code == 200) {
                             $('.original-menu').html(data.data);
-                            if(data.right_html){
+                            if (data.right_html) {
                                 $('.quick-view-list').html(data.right_html);
                                 $('#page-details').removeClass('hide');
                                 $('#page-details').show();
-                            }else{
+                            } else {
                                 $('#page-details').removeClass('show');
                                 $('#page-details').hide();
                             }
@@ -133,7 +133,7 @@
                 });
             });
 
-            $('body').on('click','.deactivate-item',function(){
+            $('body').on('click', '.deactivate-item', function () {
                 var permID = $(this).attr('data-perm');
                 var roleID = $(this).attr('data-role');
                 var child = $(this).attr('data-child');
@@ -151,11 +151,11 @@
                     success: function (data) {
                         if (data.code == 200) {
                             $('.original-menu').html(data.data);
-                            if(data.right_html){
+                            if (data.right_html) {
                                 $('.quick-view-list').html(data.right_html);
                                 $('#page-details').removeClass('hide');
                                 $('#page-details').show();
-                            }else{
+                            } else {
                                 $('#page-details').removeClass('show');
                                 $('#page-details').hide();
                             }
@@ -172,7 +172,7 @@
                 $('[data-tab-action="tabs"] li:first-child').find('a').click();
             }
 
-            $('[data-tab-action="tabs"] a').click(function() {
+            $('[data-tab-action="tabs"] a').click(function () {
                 localStorage.activetoolspages = $(this).attr('href');
                 thisname = $(this).data('name')
             });

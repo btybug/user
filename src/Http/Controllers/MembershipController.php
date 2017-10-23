@@ -20,59 +20,64 @@ use Illuminate\Http\Request;
 class MembershipController extends Controller
 {
 
-    public function getIndex() {
+    public function getIndex()
+    {
         $memberships = Membership::all();
         return view('users::membership.index', compact(['memberships']));
     }
 
-    public function getCreate(Request $request) {
+    public function getCreate(Request $request)
+    {
         return view('users::membership.create');
     }
 
 
-    public function postCreate(Request $request){
+    public function postCreate(Request $request)
+    {
         $data = $request->except('_token');
         $rules = array_merge([
             'name' => 'required|max:100',
             'slug' => 'required|max:255|unique:memberships,slug',
         ]);
         $validator = \Validator::make($data, $rules);
-        if ($validator->fails()) return redirect()->back()->with('errors',$validator->errors());
+        if ($validator->fails()) return redirect()->back()->with('errors', $validator->errors());
 
         Membership::create($data);
-        return redirect()->route('admin.users.membership.list')->with('message','Membership has been created successfully');
+        return redirect()->route('admin.users.membership.list')->with('message', 'Membership has been created successfully');
     }
 
-    public function getEdit(Request $request){
+    public function getEdit(Request $request)
+    {
         $membership = Membership::where('slug', $request->slug)->first();
-        if(! $membership) {
+        if (!$membership) {
             abort(404);
         }
 
-        return view('users::membership.edit',compact('membership'));
+        return view('users::membership.edit', compact('membership'));
     }
 
-    public function postEdit(Request $request){
-        $membership = Membership::where('slug',$request->slug)->first();
+    public function postEdit(Request $request)
+    {
+        $membership = Membership::where('slug', $request->slug)->first();
 
-        if(! $membership) abort(404);
+        if (!$membership) abort(404);
 
         $data = $request->except('_token');
         $rules = array_merge([
             'name' => 'required|max:100',
-            'slug' => 'required|max:255|unique:memberships,slug,'.$membership->id.",id",
+            'slug' => 'required|max:255|unique:memberships,slug,' . $membership->id . ",id",
         ]);
         $validator = \Validator::make($data, $rules);
-        if ($validator->fails()) return redirect()->back()->with('errors',$validator->errors());
+        if ($validator->fails()) return redirect()->back()->with('errors', $validator->errors());
 
         $membership->update($data);
-        return redirect()->route('admin.users.membership.list')->with('message','Membership has been updated successfully');
+        return redirect()->route('admin.users.membership.list')->with('message', 'Membership has been updated successfully');
     }
 
     public function postDelete(Request $request)
     {
         $result = false;
-        if($request->slug) {
+        if ($request->slug) {
             $result = Membership::find($request->slug)->delete();
         }
         return \Response::json(['success' => $result]);
@@ -80,13 +85,13 @@ class MembershipController extends Controller
 
     public function getPermissions($slug)
     {
-        $role = Roles::where('slug',$slug)->first();
+        $role = Roles::where('slug', $slug)->first();
 
-        if(! $role) abort(404);
+        if (!$role) abort(404);
 
-        $dataFront = FrontendPage::where('parent_id',NULL)->groupBy("module_id")->get();
+        $dataFront = FrontendPage::where('parent_id', NULL)->groupBy("module_id")->get();
 
-        return view("users::membership.permissions",compact(['role','dataFront','slug']));
+        return view("users::membership.permissions", compact(['role', 'dataFront', 'slug']));
     }
 
     public function postPermissions(Request $request)
@@ -95,25 +100,25 @@ class MembershipController extends Controller
 
         $page = FrontendPage::find($data['pageID']);
         $newMembership = Roles::find($data['roleID']);
-        $membershipString = FrontendPage::getRolesByPage($page->id,false);
+        $membershipString = FrontendPage::getRolesByPage($page->id, false);
 
-        if($data['isChecked'] == 'yes'){
+        if ($data['isChecked'] == 'yes') {
             $membershipString[] = $newMembership->slug;
-        }else{
-            if(($key = array_search($newMembership->slug, $membershipString)) !== false) {
+        } else {
+            if (($key = array_search($newMembership->slug, $membershipString)) !== false) {
                 unset($membershipString[$key]);
             }
         }
 
-        if(count($membershipString)){
-            $memberships = implode(',',$membershipString);
-        }else{
+        if (count($membershipString)) {
+            $memberships = implode(',', $membershipString);
+        } else {
             $memberships = null;
         }
-        PermissionRole::optimizePageRoles($page,$memberships, 'front');
-        $dataFront = FrontendPage::where('parent_id',Null)->groupBy("module_id")->get();
-        $role = Roles::where('slug',$request->role_slug)->first();
-        $html = view('users::membership._partials.perm_list',compact(['role','dataFront']))->render();
+        PermissionRole::optimizePageRoles($page, $memberships, 'front');
+        $dataFront = FrontendPage::where('parent_id', Null)->groupBy("module_id")->get();
+        $role = Roles::where('slug', $request->role_slug)->first();
+        $html = view('users::membership._partials.perm_list', compact(['role', 'dataFront']))->render();
 
         return \Response::json(['error' => false, 'html' => $html]);
     }

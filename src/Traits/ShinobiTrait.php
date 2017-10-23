@@ -30,7 +30,7 @@ trait ShinobiTrait
      *
      * @return array|null
      */
-    public function getPermissions ()
+    public function getPermissions()
     {
         $permissions = [[], []];
 
@@ -52,7 +52,7 @@ trait ShinobiTrait
      *
      * @return bool
      */
-    public function canAtLeast (array $permissions)
+    public function canAtLeast(array $permissions)
     {
         $can = false;
 
@@ -79,7 +79,7 @@ trait ShinobiTrait
      *
      * @return mixed
      */
-    public function __call ($method, $arguments = [])
+    public function __call($method, $arguments = [])
     {
         // Handle isRoleslug() methods
         if (starts_with($method, 'is') and $method !== 'is') {
@@ -105,7 +105,7 @@ trait ShinobiTrait
      *
      * @return bool
      */
-    public function isRole ($slug)
+    public function isRole($slug)
     {
         $slug = strtolower($slug);
 
@@ -131,7 +131,7 @@ trait ShinobiTrait
      *
      * @return bool
      */
-    public function can ($permission, $arguments = [])
+    public function can($permission, $arguments = [])
     {
         $can = false;
 

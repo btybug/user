@@ -3,12 +3,10 @@
 namespace Sahakavatar\User\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use  App\Modules\Users\Repository\User;
-
-use Illuminate\Http\Request;
 use App\Models\Home;
 use Auth;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 
 class UserFrontController extends Controller
@@ -49,17 +47,17 @@ class UserFrontController extends Controller
 
     public function notifications(Request $request)
     {
-       /* $userNotified = Auth::user();
-        $notifications = $userNotified->getNotifications();
-        $content = $this->formatNotifications(
-            $notifications->toArray()
-        );
+        /* $userNotified = Auth::user();
+         $notifications = $userNotified->getNotifications();
+         $content = $this->formatNotifications(
+             $notifications->toArray()
+         );
 
-        $user = Auth::user();
-        $url = $request->path();
-        $data = $this->homemodel->renderStuff($url, $content);
+         $user = Auth::user();
+         $url = $request->path();
+         $data = $this->homemodel->renderStuff($url, $content);
 
-        return view("layouts.master", $data);*/
+         return view("layouts.master", $data);*/
     }
 
     /**

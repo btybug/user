@@ -9,7 +9,6 @@
 namespace Sahakavatar\User\Http\Requests\Role;
 
 use Sahakavatar\Cms\Http\Requests\Request;
-use Sahakavatar\User\Repository\RoleRepository;
 
 class EditRoleRequest extends Request
 {
@@ -33,7 +32,7 @@ class EditRoleRequest extends Request
         if ($this->isMethod('POST')) {
             return [
                 'name' => 'required|max:100',
-                'slug' => 'required|max:255|unique:roles,slug,'.$this->id.",id",
+                'slug' => 'required|max:255|unique:roles,slug,' . $this->id . ",id",
             ];
         }
         return [];

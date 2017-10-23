@@ -23,9 +23,9 @@
 
 
 <div class="col-md-3">
-    {!! Form::model($user,array('route' => ['admin.users.editAdmins', $user->id], 'method' => 'POST','class' => 'form')) !!}
-    {!! Form::button('save',['class' => 'btn btn-success save-edit']) !!}
-            <!-- begin panel -->
+{!! Form::model($user,array('route' => ['admin.users.editAdmins', $user->id], 'method' => 'POST','class' => 'form')) !!}
+{!! Form::button('save',['class' => 'btn btn-success save-edit']) !!}
+<!-- begin panel -->
     <div class="panel panel-default m-t-5" data-sortable-id="form-stuff-4">
         <div class="panel-heading bg-black-darker text-white">Publishing</div>
         <div class="panel-body">

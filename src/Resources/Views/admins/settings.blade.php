@@ -8,10 +8,10 @@
         <div class="col-md-6">
         {!! Form::open(['class' => 'form-horizontal', 'id' => 'blog_settings_form']) !!}
         <!-- Form Name -->
-            @include('users::_partials._default_user_form')
-{{--            @include('users::_partials.form_settings')--}}
+        @include('users::_partials._default_user_form')
+        {{--            @include('users::_partials.form_settings')--}}
 
-            <!-- Button -->
+        <!-- Button -->
             <div class="form-group">
                 <div class="col-md-2"></div>
                 <div class="col-md-10">

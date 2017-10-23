@@ -8,7 +8,6 @@
 
 namespace Sahakavatar\User\Http\Requests\Status;
 
-use Illuminate\Support\Facades\Auth;
 use Sahakavatar\Cms\Http\Requests\Request;
 
 class CreateStatusRequest extends Request

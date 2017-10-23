@@ -9,7 +9,6 @@
 
 namespace Sahakavatar\User\Services;
 
-use Illuminate\Support\Facades\Auth;
 use Sahakavatar\Cms\Services\GeneralService;
 use Sahakavatar\User\Repository\RoleRepository;
 
@@ -29,10 +28,17 @@ class RoleService extends GeneralService
         return $this->roleRepository->model()->pluck('name', 'id')->toArray();
     }
 
-    public function getRolesSeperetedWith($seperator = ',')
+    public function getFrontRolesSeperetedWith()
     {
-        $data = $this->roleRepository->getRolesSeperetedWith();
-        return implode($seperator, $data);
+        $both = $this->getRolesSeperetedWith();
+        $front = $this->getRolesSeperetedWith(',', 2);
+
+        return $both . "," . $front;
     }
 
+    public function getRolesSeperetedWith($seperator = ',', $access = 0)
+    {
+        $data = $this->roleRepository->model()->where('access', $access)->pluck('slug', 'slug')->toArray();
+        return implode($seperator, $data);
+    }
 }

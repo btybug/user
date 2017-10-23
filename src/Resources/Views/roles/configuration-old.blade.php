@@ -44,7 +44,7 @@
                     <td>
                         <div style="max-width: 100px;overflow: hidden;height: 50px;">
                             @if($role->icon)
-                                <img src="{!! $role->icon !!}" width="50" />
+                                <img src="{!! $role->icon !!}" width="50"/>
                             @else
                                 No Icon
                             @endif
@@ -126,46 +126,48 @@
             </div>
         </div>
     </div>
-    @stop
-    @section('CSS')
+@stop
+@section('CSS')
 
-            <!--Attach CSS Files-->
+    <!--Attach CSS Files-->
     {!! HTML::style('/public/libs/bootstrap-editable/css/bootstrap-editable.css') !!}
 
-    <link rel="stylesheet" href="/public/css/bootstrap.css?v=1.1" />
-    <link rel="stylesheet" href="/public/libs/jqueryui/css/jquery-ui.min.css" />
-    <link rel="stylesheet" href="/public/libs/font-awesome/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="/public/libs/bootstrap-select/css/bootstrap-select.min.css" />
-    <link rel="stylesheet" href="/public/libs/jquery.mCustomScrollbar/css/jquery.mCustomScrollbar.css" />
-    <link rel="stylesheet" href="/public/libs/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" />
+    <link rel="stylesheet" href="/public/css/bootstrap.css?v=1.1"/>
+    <link rel="stylesheet" href="/public/libs/jqueryui/css/jquery-ui.min.css"/>
+    <link rel="stylesheet" href="/public/libs/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/public/libs/bootstrap-select/css/bootstrap-select.min.css"/>
+    <link rel="stylesheet" href="/public/libs/jquery.mCustomScrollbar/css/jquery.mCustomScrollbar.css"/>
+    <link rel="stylesheet" href="/public/libs/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css"/>
     <link rel="stylesheet" href="/appdata/resources/ganaral_layouts/menubuilder/css/menu.css">
     <link rel="stylesheet" href="/appdata/resources/ganaral_layouts/menubuilder/css/styles.css?v=3.8">
-            <!--Attach CSS  Files-->
+    <!--Attach CSS  Files-->
     <style>
-        .menu-preview{
+        .menu-preview {
 
         }
 
-        .arrowicon, .nowicon{
-            margin-left:0;
+        .arrowicon, .nowicon {
+            margin-left: 0;
         }
 
-        .download-btn{
+        .download-btn {
             margin-right: 10px;
         }
 
-        .formrow{
+        .formrow {
             padding: 10px 0;
-            border:0;
+            border: 0;
         }
 
-        .form-horizontal .control-label{
+        .form-horizontal .control-label {
             text-align: left;
         }
+
         .menuBuilder {
             min-height: 700px;
             margin-top: 65px;
         }
+
         .permission-form .perm-header {
             background-image: linear-gradient(to bottom, #e8e8e8 0px, #f5f5f5 100%);
             background-repeat: repeat-x;
@@ -191,25 +193,27 @@
             min-height: 32px;
         }
     </style>
-    @stop
+@stop
 
-            <!--JS-->
-    @section('JS')
+<!--JS-->
+@section('JS')
 
-            <!--Attach JS Files-->
+    <!--Attach JS Files-->
     {!! HTML::script('/public/libs/bootstrap-editable/js/bootstrap-editable.min.js') !!}
 
     <script src="/public/js/jquery-2.1.4.min.js" type="text/javascript"></script>
     <script src="/public/libs/jqueryui/js/jquery-ui.min.js" type="text/javascript"></script>
     <script src="/public/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="/public/libs/bootstrap-select/js/bootstrap-select.min.js" type="text/javascript"></script>
-    <script src="/public/libs/jquery.mCustomScrollbar/js/jquery.mCustomScrollbar.min.js" type="text/javascript"></script>
+    <script src="/public/libs/jquery.mCustomScrollbar/js/jquery.mCustomScrollbar.min.js"
+            type="text/javascript"></script>
     <script src="/public/libs/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js" type="text/javascript"></script>
     <script src="/public/libs/bootbox/js/bootbox.min.js" type="text/javascript"></script>
-    <script src="/appdata/resources/ganaral_layouts/menubuilder/js/menumaker/nestedSortable/jquery.mjs.nestedSortable.js" type="text/javascript"></script>
+    <script src="/appdata/resources/ganaral_layouts/menubuilder/js/menumaker/nestedSortable/jquery.mjs.nestedSortable.js"
+            type="text/javascript"></script>
     <script src="/appdata/resources/ganaral_layouts/menubuilder/js/menumaker/menu.js" type="text/javascript"></script>
     <script src="/appdata/resources/ganaral_layouts/menubuilder/js/main.js?v=2.5" type="text/javascript"></script>
-            <!--Attach JS  Files-->
+    <!--Attach JS  Files-->
     <script>
         $(document).ready(function () {
 
@@ -230,7 +234,7 @@
             });
 
 
-            $('.btnadd').click(function(){
+            $('.btnadd').click(function () {
                 var token = $('#token').val();
 
                 $.ajax({

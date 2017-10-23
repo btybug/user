@@ -2,7 +2,8 @@
 @section('tab')
     <div class="row">
         <div class="col-sm-12">
-            <a class="btn btn-primary pull-right" href="{!! url('admin/users/conditions/create') !!}">Create New Condition</a>
+            <a class="btn btn-primary pull-right" href="{!! url('admin/users/conditions/create') !!}">Create New
+                Condition</a>
         </div>
 
         <div class="col-sm-12">
@@ -21,7 +22,7 @@
                             <td>Confirm Email</td>
                             <td>
                                 <a data-href="{!! url('/admin/users/conditions/delete') !!}"
-                                    class="delete-button btn btn-danger"><i
+                                   class="delete-button btn btn-danger"><i
                                             class="fa fa-trash-o f-s-14 "></i></a>
                                 <a href="{!! url("admin/users/conditions/edit") !!}" class="btn btn-info edit-class">
                                     <i class="fa fa-edit"></i>

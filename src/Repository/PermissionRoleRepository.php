@@ -14,25 +14,13 @@ use Sahakavatar\User\Models\PermissionRole;
 class PermissionRoleRepository extends GeneralRepository
 {
 
-    public function __construct(
-        RoleRepository $roleRepository
-    )
+    public function optimizePageRoles($page, array $roles, string $pageType = 'back')
     {
-        $this->roleRepository = $roleRepository;
-    }
-
-    public function model()
-    {
-        return new PermissionRole();
-    }
-
-    public function optimizePageRoles($page, array $data, string $pageType = 'back')
-    {
-        if ($data) {
-            $roles = explode(',', $data);
+        if (count($roles)) {
             $roleIDs = [];
             foreach ($roles as $role) {
-                if ($r = $this->roleRepository->findBy('slug', $role)) {
+                $roleRepo = new RoleRepository();
+                if ($r = $roleRepo->findBy('slug', $role)) {
                     $roleIDs[] = $r->id;
                 }
             }
@@ -77,9 +65,18 @@ class PermissionRoleRepository extends GeneralRepository
         }
     }
 
-    public function getBackendPagesWithRoleAndPage($roleID,$pageID)
+    public function getBackendPagesWithRoleAndPage($roleID, $pageID)
     {
         return $this->model()->where('role_id', $roleID)->where('page_id', $pageID)->where('page_type', 'back')->first();
     }
 
+    public function model()
+    {
+        return new PermissionRole();
+    }
+
+    public function getFrontPagesWithRoleAndPage($roleID, $pageID)
+    {
+        return $this->model()->where('role_id', $roleID)->where('page_id', $pageID)->where('page_type', 'front')->first();
+    }
 }

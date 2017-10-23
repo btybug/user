@@ -2,7 +2,8 @@
 @section('tab')
     <div class="row">
         <div class="col-sm-12">
-            <a class="btn btn-primary pull-right" href="{!! route('admin.users.membership.getCreate') !!}">Create New Memberships</a>
+            <a class="btn btn-primary pull-right" href="{!! route('admin.users.membership.getCreate') !!}">Create New
+                Memberships</a>
         </div>
         <div class="col-sm-12">
             <div class="box-info full">
@@ -40,17 +41,19 @@
                                 <td>{!! 'Default' !!}</td>
                                 <td>{!! 'Approval' !!}</td>
                                 <td>
-                                    <a href="{!! url("admin/users/memberships/edit", $membership->slug) !!}" class="btn btn-info edit-class">
+                                    <a href="{!! url("admin/users/memberships/edit", $membership->slug) !!}"
+                                       class="btn btn-info edit-class">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                     <a data-href="{!! url('/admin/users/memberships/delete') !!}"
-                                       data-key="{!! $membership->id !!}" data-type="Membership {{ $membership->name }}" class="delete-button btn btn-danger"><i
+                                       data-key="{!! $membership->id !!}" data-type="Membership {{ $membership->name }}"
+                                       class="delete-button btn btn-danger"><i
                                                 class="fa fa-trash-o f-s-14 "></i></a>
 
-                                        <a href="{!! url('/admin/users/memberships/permissions',$membership->slug)!!}"
-                                           class="btn btn-success">
-                                            <i class="fa fa-crop">Permissions</i>
-                                        </a>
+                                    <a href="{!! url('/admin/users/memberships/permissions',$membership->slug)!!}"
+                                       class="btn btn-success">
+                                        <i class="fa fa-crop">Permissions</i>
+                                    </a>
 
                                 </td>
                             </tr>

@@ -37,8 +37,8 @@
                 {!! Form::submit('Create',['class' => 'btn btn-primary']) !!}
             </div>
 
-    {!! Form::close() !!}
-</div>
+            {!! Form::close() !!}
+        </div>
     </div>
 @stop
 @section('JS')

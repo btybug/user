@@ -37,14 +37,14 @@
 
                     </div>
                     <div class="col-md-6">
-                       <button class="btn">Add</button>
+                        <button class="btn">Add</button>
                     </div>
                 </div>
             </div>
             <div class="panel panel-default custompanel2">
                 <div class="panel-heading">Pending</div>
                 <div class="panel-body">
-                 
+
                 </div>
             </div>
             <div class="panel panel-default custompanel2">
@@ -65,5 +65,5 @@
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 @stop
 @push('css')
-<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 @endpush

@@ -2,7 +2,8 @@
 @section('tab')
     <div class="row">
         <div class="col-sm-12">
-            <a class="btn btn-primary pull-right" href="{!! url('admin/users/statuses/create') !!}">Create New Status</a>
+            <a class="btn btn-primary pull-right" href="{!! url('admin/users/statuses/create') !!}">Create New
+                Status</a>
         </div>
 
         <div class="col-sm-12">
@@ -22,11 +23,13 @@
                                 <tr>
                                     <td>{!! $status->name !!}</td>
                                     <td>
-                                        <a href="{!! url("admin/users/statuses/edit", [$status->id]) !!}" class="btn btn-info edit-class">
+                                        <a href="{!! url("admin/users/statuses/edit", [$status->id]) !!}"
+                                           class="btn btn-info edit-class">
                                             <i class="fa fa-edit"></i>
                                         </a>
                                         @if(!$status->is_core)
-                                            <a data-href="{!! url('/admin/users/statuses/delete') !!}" data-key="{!! $status->id !!}" data-type="Status"
+                                            <a data-href="{!! url('/admin/users/statuses/delete') !!}"
+                                               data-key="{!! $status->id !!}" data-type="Status"
                                                class="delete-button btn btn-danger"><i
                                                         class="fa fa-trash-o f-s-14 "></i></a>
                                         @endif

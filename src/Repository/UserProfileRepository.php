@@ -14,15 +14,16 @@ use Sahakavatar\User\Models\UsersProfile;
 
 class UserProfileRepository extends GeneralRepository
 {
-    public function model()
+    public function createProfile(int $id)
     {
-        return new UsersProfile();
-    }
-
-    public function createProfile(int $id) {
         return $this->model()->create([
             'user_id' => $id
         ]);
+    }
+
+    public function model()
+    {
+        return new UsersProfile();
     }
 
 }

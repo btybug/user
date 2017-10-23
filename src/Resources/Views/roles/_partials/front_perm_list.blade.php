@@ -1,0 +1,1 @@
+{!! hierarchyFrontendPagesListWithModuleName($dataFront,null,true,$role,true) !!}

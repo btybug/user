@@ -37,10 +37,12 @@
                                 <td>
                                     @if(!in_array($role->id, $defaultRoles))
                                         <a data-href="{!! url('/admin/users/roles/delete') !!}"
-                                            data-key="{!! $role->id !!}" data-type="Role {{ $role->name }}" class="delete-button btn btn-danger"><i
+                                           data-key="{!! $role->id !!}" data-type="Role {{ $role->name }}"
+                                           class="delete-button btn btn-danger"><i
                                                     class="fa fa-trash-o f-s-14 "></i></a>
 
-                                        <a href="{!! url("admin/users/roles/edit",$role->id) !!}" class="btn btn-info edit-class">
+                                        <a href="{!! url("admin/users/roles/edit",$role->id) !!}"
+                                           class="btn btn-info edit-class">
                                             <i class="fa fa-edit"></i>
                                         </a>
                                         <a href="{!! url('/admin/users/roles/permissions',$role->slug)!!}"

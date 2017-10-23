@@ -10,7 +10,6 @@ namespace Sahakavatar\User\Repository;
 
 use Sahakavatar\Cms\Repositories\GeneralRepository;
 use Sahakavatar\User\Models\Permissions;
-use Sahakavatar\User\Models\Roles;
 
 class PermissionRepository extends GeneralRepository
 {

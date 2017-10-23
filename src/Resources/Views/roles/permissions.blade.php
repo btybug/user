@@ -1,5 +1,6 @@
 @extends('cms::layouts.admin')
 @section('content')
+
     <ol class="breadcrumb">
         <li><a href="/">Dashboard</a></li>
         <li class="active">All Users</li>
@@ -7,34 +8,20 @@
     <div class="row">
         <div class="p-10 bg-silver  overflow-y-hidden">
             <div class="tab-content m-10 overflow-y-hidden">
-                <div class="row">
-                    <!-- END Item template -->
-                    <div class="col-md-7">
-                        <div class="panel panel-default">
-                            <div class="panel-heading bg-black-darker text-white">{!! $role->name !!} Permissions</div>
-                            <div class="panel-body original-menu perm_list_box">
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 right">
-                                    <article>
-                                        <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <div id="pages_back" class="panel_bd_styles tree-styles">
-                                                @include('users::roles._partials.perm_list')
-                                            </div>
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading bg-black-darker text-white">{!! $role->name !!} Permissions</div>
+                        <div class="panel-body original-menu perm_list_box">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 right">
+                                <article>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div id="pages_back" class="panel_bd_styles tree-styles">
+                                            @include("users::roles._partials.perm_list")
                                         </div>
-                                    </article>
-                                </div>
-
+                                    </div>
+                                </article>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="col-md-5 hide" id="page-details">
-                        <div class="panel panel-default">
-                            <div class="panel-heading bg-black-darker text-white">Additional Permissions</div>
-                            <div class="panel-body form-horizontal">
-                                <ul class="quick-view-list">
-
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -46,7 +33,7 @@
     <script>
         $('body').on('click', '.show-child-perm', function () {
             var esi = $(this).data("pageid");
-            var active = "#collapseOne"+esi;
+            var active = "#collapseOne" + esi;
 
             var permID = $(this).data('pageid');
             var roleID = $(this).data('roleid');
@@ -79,7 +66,7 @@
     </script>
 @stop
 @push('css')
-{!! HTML::style('css/create_pages.css') !!}
-{!! HTML::style('css/page.css?v=0.15') !!}
-{!! HTML::style('css/admin_pages.css') !!}
+    {!! HTML::style('css/create_pages.css') !!}
+    {!! HTML::style('css/page.css?v=0.15') !!}
+    {!! HTML::style('css/admin_pages.css') !!}
 @endpush

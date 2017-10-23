@@ -44,7 +44,7 @@ class ProfileController extends Controller
     public function getLoginDetails()
     {
         $model = Auth::user();
-        return view('users::profile.edit_login_details',compact(['model']));
+        return view('users::profile.edit_login_details', compact(['model']));
     }
 
     public function changePassword(

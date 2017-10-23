@@ -2,10 +2,9 @@
 
 namespace Sahakavatar\User\Models;
 
-use Sahakavatar\User\Traits\ShinobiTrait;
-use File;
 use Illuminate\Database\Eloquent\Model;
 use Sahakavatar\Settings\Models\Settings;
+use Sahakavatar\User\Traits\ShinobiTrait;
 
 class Roles extends Model
 {
@@ -15,18 +14,16 @@ class Roles extends Model
     const ACCESS_TO_BOTH = 0;
     const ACCESS_TO_BACKEND = 1;
     const ACCESS_TO_FRONTEND = 2;
-
+    public static $accessList = [
+        self::ACCESS_TO_BACKEND => 'Back End',
+        self::ACCESS_TO_FRONTEND => 'Front End',
+        self::ACCESS_TO_BOTH => 'Back and Front End',
+    ];
     protected static $menus = [
         'Left Navbar Core' => 1,
         'User Menu Core' => 2,
         'Left Header Core' => 3,
         'Right Header Core' => 4,
-    ];
-
-    public static $accessList = [
-        self::ACCESS_TO_BACKEND => 'Back End',
-        self::ACCESS_TO_FRONTEND => 'Front End',
-        self::ACCESS_TO_BOTH => 'Back and Front End',
     ];
     /**
      * The database table used by the model.
@@ -47,6 +44,16 @@ class Roles extends Model
      */
     protected $dates = ['created_at', 'updated_at'];
 
+    public static function getDefaultFrontEndRole()
+    {
+        return Settings::where('settingkey', 'default_field_html')->first();
+    }
+
+    public static function getFrontendRoles()
+    {
+        return self::where('access', self::ACCESS_TO_FRONTEND)->pluck('name', 'id');
+    }
+
     public function users()
     {
         return $this->hasMany('Sahakavatar\User\User', 'role_id');
@@ -62,17 +69,8 @@ class Roles extends Model
         return $this->hasMany('App\Modules\Backend\MenuVariation', 'user_role', 'id');
     }
 
-
-
-    public function getAccessName() {
+    public function getAccessName()
+    {
         return self::$accessList[$this->access];
-    }
-
-    public static function getDefaultFrontEndRole() {
-       return Settings::where('settingkey', 'default_field_html')->first();
-    }
-
-    public static function getFrontendRoles() {
-        return self::where('access', self::ACCESS_TO_FRONTEND)->pluck('name', 'id');
     }
 }

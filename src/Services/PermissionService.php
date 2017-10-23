@@ -9,7 +9,6 @@
 
 namespace Sahakavatar\User\Services;
 
-use Illuminate\Support\Facades\Auth;
 use Sahakavatar\Cms\Services\GeneralService;
 use Sahakavatar\Console\Repository\AdminPagesRepository;
 use Sahakavatar\Console\Repository\FrontPagesRepository;
@@ -55,9 +54,8 @@ class PermissionService extends GeneralService
                         unset($rolesString[$key]);
                     }
                 }
-                $roles = (count($rolesString)) ? implode(',', $rolesString) : null;
 
-                PermissionRole::optimizePageRoles($page, $roles);
+                $this->permissionRoleRepository->optimizePageRoles($page, $rolesString);
                 $data = $this->adminPagesRepository->getGroupedWithModule();
                 $role = $this->roleRepository->findBy('slug', $requestData['role_slug']);
                 $html = view('users::roles._partials.perm_list', compact(['role', 'data']))->render();
@@ -73,11 +71,10 @@ class PermissionService extends GeneralService
                         unset($rolesString[$key]);
                     }
                 }
-                $roles = (count($rolesString)) ? implode(',', $rolesString) : null;
-                PermissionRole::optimizePageRoles($page, $roles, 'front');
+                $this->permissionRoleRepository->optimizePageRoles($page, $rolesString, 'front');
                 $dataFront = $this->frontPagesRepository->getGroupedWithModule();
                 $role = $this->roleRepository->findBy('slug', $requestData['role_slug']);
-                $html = view('users::membership._partials.perm_list', compact(['role', 'dataFront']))->render();
+                $html = view('users::roles._partials.front_perm_list', compact(['role', 'dataFront']))->render();
                 return $html;
                 break;
         }

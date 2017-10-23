@@ -2,8 +2,8 @@
 
 namespace Sahakavatar\User\Providers;
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -59,7 +59,7 @@ class RouteServiceProvider extends ServiceProvider
                 'prefix' => 'admin/users',
                 'namespace' => $this->namespace,
             ], function ($router) {
-                require __DIR__.'/../Routes/web.php';
+                require __DIR__ . '/../Routes/web.php';
             });
         });
     }
@@ -75,10 +75,10 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::group([
             'middleware' => 'api',
-            'namespace'  => $this->namespace,
-            'prefix'     => 'api',
+            'namespace' => $this->namespace,
+            'prefix' => 'api',
         ], function ($router) {
-            require __DIR__.'/../Routes/api.php';
+            require __DIR__ . '/../Routes/api.php';
         });
     }
 }

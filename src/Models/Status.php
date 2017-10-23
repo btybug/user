@@ -3,7 +3,6 @@
 namespace Sahakavatar\User\Models;
 
 use App\Modules\Users\Traits\ShinobiTrait;
-use File;
 use Illuminate\Database\Eloquent\Model;
 
 class Status extends Model

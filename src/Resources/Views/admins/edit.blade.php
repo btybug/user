@@ -31,7 +31,7 @@
                 {!! Form::password('password_confirmation',['class'=>'form-control','placeholder'=>'Enter Confirm Password'])!!}
             </div>
             {{--<div class="form-group">--}}
-                {{--@include('users::_partials.form_settings')--}}
+            {{--@include('users::_partials.form_settings')--}}
             {{--</div>--}}
             <div class="form-group">
                 {!! Form::submit('Edit',['class' => 'btn btn-primary']) !!}

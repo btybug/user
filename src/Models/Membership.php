@@ -23,7 +23,7 @@ class Membership extends Model
 
     public function permissions()
     {
-        return $this->belongsToMany('App\Modules\Users\Models\Permissions', 'membership_permission','membership_id','permission_id');
+        return $this->belongsToMany('App\Modules\Users\Models\Permissions', 'membership_permission', 'membership_id', 'permission_id');
     }
 
 }

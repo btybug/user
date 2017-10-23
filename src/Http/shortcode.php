@@ -1,7 +1,8 @@
 <?php
-use App\Modules\Users\Models\Roles;
-use \App\Modules\Users\User;
+
 use App\Modules\Users\Groups;
+use App\Modules\Users\Models\Roles;
+use App\Modules\Users\User;
 
 if (!function_exists('BBAdminRoles')) {
     /**
@@ -56,7 +57,7 @@ if (!function_exists('BBAdminRoleUsers')) {
      *
      * Provides a list of all system admin users related to some specific rold
      *
-     * @param Roll $id|null
+     * @param Roll $id |null
      * @return $role users | null
      */
     function BBAdminRoleUsers($id = null)
@@ -71,7 +72,6 @@ if (!function_exists('BBAdminRoleUsers')) {
         return $users;
     }
 }
-
 
 
 if (!function_exists('BBAdminUsers')) {
@@ -209,8 +209,7 @@ if (!function_exists('BBGetUserName')) {
                     return Auth::user()->username;
                 }
 
-                return (Auth::user()->profile->first_name || Auth::user()->profile->last_name) ? Auth::user(
-                    )->profile->first_name . ' ' . Auth::user()->profile->last_name : Auth::user()->username;
+                return (Auth::user()->profile->first_name || Auth::user()->profile->last_name) ? Auth::user()->profile->first_name . ' ' . Auth::user()->profile->last_name : Auth::user()->username;
             }
         }
 
@@ -259,28 +258,6 @@ if (!function_exists('BBGetUserJoin')) {
     }
 }
 
-
-
-if (!function_exists('BBGetUserAvatar')) {
-    /**
-     * @param null $id
-     * @return mixed|null|string
-     */
-    function BBGetUserAvatar($id = null)
-    {
-        if ($id) {
-            if ($user = User::find($id)) {
-                return ($user->profile->avatar) ? url($user->profile->avatar) : '/resources/assets/images/avatar.png';
-            }
-        } else {
-            if (Auth::check()) {
-                return (Auth::user()->profile->avatar) ? url(Auth::user()->profile->avatar) : '/resources/assets/images/avatar.png';
-            }
-        }
-
-        return null;
-    }
-}
 if (!function_exists('BBGetUserCover')) {
     /**
      * @param null $id

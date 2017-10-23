@@ -2,13 +2,13 @@
 
 namespace Sahakavatar\User;
 
-use Sahakavatar\User\Models\Roles;
-use Sahakavatar\User\Models\UsersProfile;
-use Sahakavatar\User\Traits\ShinobiTrait;
 use Auth;
 use File;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Sahakavatar\User\Models\Roles;
+use Sahakavatar\User\Models\UsersProfile;
+use Sahakavatar\User\Traits\ShinobiTrait;
 
 /**
  * Class User
@@ -78,7 +78,7 @@ class User extends Authenticatable
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        $_SESSION[$this->getTable()]= &$this;
+        $_SESSION[$this->getTable()] = &$this;
     }
 
     /**

@@ -137,7 +137,7 @@ return [
                 'params' => 'id of user',
                 'return' => 'User Email',
                 'code_snap' => 'BBGetUserEmail($id|empty)'
-            ],[
+            ], [
                 'title' => 'Get User Join Date',
                 'des' => 'This function provides given user\'s join date, If id given finds against that id else try to find logedin user',
                 'params' => 'id of user',

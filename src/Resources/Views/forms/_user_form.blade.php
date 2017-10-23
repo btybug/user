@@ -31,5 +31,5 @@
     {!! Form::radio('active',1)  !!} Active
     {!! Form::radio('active',0)  !!} Inactive
 </div>
-<input type="submit" class="btn btn-success pull-right m-l-10" value=" Add " />
+<input type="submit" class="btn btn-success pull-right m-l-10" value=" Add "/>
 <a href="{!! url('/admin/users')!!}" class="btn btn pull-right btn-primary"> Back </a>

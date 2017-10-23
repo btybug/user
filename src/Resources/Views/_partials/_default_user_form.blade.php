@@ -1,4 +1,3 @@
-
 <div class="form-group">
     {!! Form::label('username','Username',[])!!}
     {!! Form::text('username',null,['class'=>'form-control','placeholder'=>'Enter Username'])!!}

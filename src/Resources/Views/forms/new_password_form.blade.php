@@ -24,5 +24,5 @@
     {!! Form::label('Confirm password') !!}
     {!! Form::password('password_confirmation', array('id' => 'password_confirmation', 'class'=>'form-control', 'placeholder'=>'Confirm password')) !!}
 </div>
-<input type="submit" class="btn btn-success pull-left m-b-10" value="Change" />
+<input type="submit" class="btn btn-success pull-left m-b-10" value="Change"/>
 {!! Form::close() !!}
