@@ -6,7 +6,7 @@
  * Time: 4:39 PM
  */
 
-namespace Sahakavatar\User\Models;
+namespace Btybug\User\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

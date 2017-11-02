@@ -1,6 +1,6 @@
 <?php
 
-namespace Sahakavatar\User\Models;
+namespace Btybug\User\Models;
 
 use Caffeinated\Shinobi\Traits\ShinobiTrait;
 use Illuminate\Database\Eloquent\Model;

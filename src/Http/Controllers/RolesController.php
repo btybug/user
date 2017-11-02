@@ -9,20 +9,20 @@
  *
  */
 
-namespace Sahakavatar\User\Http\Controllers;
+namespace Btybug\User\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Caffeinated\Shinobi\Models\Role;
 use DB;
 use File;
 use Illuminate\Http\Request;
-use Sahakavatar\Console\Repository\AdminPagesRepository;
-use Sahakavatar\Console\Repository\FrontPagesRepository;
-use Sahakavatar\User\Http\Requests\Role\CreateRoleRequest;
-use Sahakavatar\User\Http\Requests\Role\EditRoleRequest;
-use Sahakavatar\User\Repository\RoleRepository;
-use Sahakavatar\User\Repository\UserRepository;
-use Sahakavatar\User\Services\PermissionService;
+use Btybug\Console\Repository\AdminPagesRepository;
+use Btybug\Console\Repository\FrontPagesRepository;
+use Btybug\User\Http\Requests\Role\CreateRoleRequest;
+use Btybug\User\Http\Requests\Role\EditRoleRequest;
+use Btybug\User\Repository\RoleRepository;
+use Btybug\User\Repository\UserRepository;
+use Btybug\User\Services\PermissionService;
 use View;
 
 class RolesController extends Controller

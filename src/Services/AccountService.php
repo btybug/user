@@ -7,7 +7,7 @@
  * Time: 3:52 PM
  */
 
-namespace Sahakavatar\User\Services;
+namespace Btybug\User\Services;
 
 use Illuminate\Support\Facades\Auth;
 use Sahakavatar\Cms\Services\GeneralService;

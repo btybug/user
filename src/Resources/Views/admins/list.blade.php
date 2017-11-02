@@ -1,4 +1,4 @@
-@extends('cms::layouts.mTabs',['index'=>'admins_users'])
+@extends('btybug::layouts.mTabs',['index'=>'admins_users'])
 
 @section('tab')
     <div class="row">

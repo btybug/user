@@ -1,6 +1,6 @@
 <?php
 
-namespace Sahakavatar\User\Http\Controllers\Auth;
+namespace Btybug\User\Http\Controllers\Auth;
 
 //use App\Events\sendEmailEvent;
 use App\Http\Controllers\Controller;
@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Notify;
 use Redirect;
-use Sahakavatar\Console\Repository\AdminPagesRepository;
-use Sahakavatar\Modules\Models\AdminPages;
+use Btybug\Console\Repository\AdminPagesRepository;
+use Btybug\Modules\Models\AdminPages;
 use Validator;
 
-//use Sahakavatar\Settings\Repository\AdminsettingRepository as Settings;
+//use Btybug\Settings\Repository\AdminsettingRepository as Settings;
 //use App\Repositories\EmailsRepository;
 
 

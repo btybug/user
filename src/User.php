@@ -1,18 +1,18 @@
 <?php
 
-namespace Sahakavatar\User;
+namespace Btybug\User;
 
 use Auth;
 use File;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Sahakavatar\User\Models\Roles;
-use Sahakavatar\User\Models\UsersProfile;
-use Sahakavatar\User\Traits\ShinobiTrait;
+use Btybug\User\Models\Roles;
+use Btybug\User\Models\UsersProfile;
+use Btybug\User\Traits\ShinobiTrait;
 
 /**
  * Class User
- * @package Sahakavatar\User
+ * @package Btybug\User
  */
 class User extends Authenticatable
 {
@@ -258,7 +258,7 @@ class User extends Authenticatable
      */
     public function role()
     {
-        return $this->belongsTo('Sahakavatar\User\Models\Roles', 'role_id', 'id');
+        return $this->belongsTo('Btybug\User\Models\Roles', 'role_id', 'id');
     }
 
     /**
@@ -266,17 +266,17 @@ class User extends Authenticatable
      */
     public function profile()
     {
-        return $this->hasOne('Sahakavatar\User\Models\UsersProfile');
+        return $this->hasOne('Btybug\User\Models\UsersProfile');
     }
 
     public function usersActivity()
     {
-        return $this->hasOne('Sahakavatar\User\Models\UsersActivity');
+        return $this->hasOne('Btybug\User\Models\UsersActivity');
     }
 
     public function membership()
     {
-        return $this->hasOne(\Sahakavatar\User\Models\Membership::class, 'id', 'membership_id');
+        return $this->hasOne(\Btybug\User\Models\Membership::class, 'id', 'membership_id');
     }
 
     /**

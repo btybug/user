@@ -6,10 +6,10 @@
  * Time: 1:31 PM
  */
 
-namespace Sahakavatar\User\Repository;
+namespace Btybug\User\Repository;
 
 use Sahakavatar\Cms\Repositories\GeneralRepository;
-use Sahakavatar\User\Models\UsersProfile;
+use Btybug\User\Models\UsersProfile;
 
 
 class UserProfileRepository extends GeneralRepository
