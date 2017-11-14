@@ -1,6 +1,6 @@
 <?php
 
-namespace Sahakavatar\User\Models;
+namespace Btybug\User\Models;
 
 use Caffeinated\Shinobi\Traits\ShinobiTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -82,16 +82,16 @@ class PermissionRole extends Model
 
     public function permission()
     {
-        return $this->hasMany('Sahakavatar\Console\Models\AdminPages', 'id', 'page_id');
+        return $this->hasMany('Btybug\Console\Models\AdminPages', 'id', 'page_id');
     }
 
     public function roles()
     {
-        return $this->hasMany('Sahakavatar\User\Models\Roles', 'id', 'role_id');
+        return $this->hasMany('Btybug\User\Models\Roles', 'id', 'role_id');
     }
 
     public function role()
     {
-        return $this->belongsTo('Sahakavatar\User\Models\Roles', 'role_id', 'id');
+        return $this->belongsTo('Btybug\User\Models\Roles', 'role_id', 'id');
     }
 }

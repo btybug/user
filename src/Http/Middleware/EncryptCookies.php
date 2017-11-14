@@ -1,6 +1,6 @@
 <?php
 
-namespace Sahakavatar\User\Http\Middleware;
+namespace Btybug\User\Http\Middleware;
 
 use Illuminate\Cookie\Middleware\EncryptCookies as BaseEncrypter;
 

@@ -45,8 +45,8 @@
                             </td>
 
                             <td>
-                                {{ \Sahakavatar\Cms\Helpers\helpers::formatDate($admin->created_at) }}
-                                <p>{{ \Sahakavatar\Cms\Helpers\helpers::formatTime($admin->created_at) }}</p>
+                                {{ \Btybug\Cms\Helpers\helpers::formatDate($admin->created_at) }}
+                                <p>{{ \Btybug\Cms\Helpers\helpers::formatTime($admin->created_at) }}</p>
                             </td>
                             <td>
                             <span class="pull-left m-r-5">

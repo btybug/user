@@ -7,9 +7,9 @@
  * Time: 3:40 PM
  */
 
-namespace Sahakavatar\User\Http\Requests\Account;
+namespace Btybug\User\Http\Requests\Account;
 
-use Sahakavatar\Cms\Http\Requests\Request;
+use Btybug\Cms\Http\Requests\Request;
 
 class ChangeRegistrationRequest extends Request
 {

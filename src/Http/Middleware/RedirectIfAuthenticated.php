@@ -1,6 +1,6 @@
 <?php
 
-namespace Sahakavatar\User\Http\Middleware;
+namespace Btybug\User\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;

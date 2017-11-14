@@ -1,13 +1,13 @@
 <?php
 
-namespace Sahakavatar\User\Http\Middleware;
+namespace Btybug\User\Http\Middleware;
 
 use App\User;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
-use Sahakavatar\Cms\Services\RenderService;
-use Sahakavatar\Console\Repository\AdminPagesRepository;
-use Sahakavatar\Modules\Models\AdminPages;
+use Btybug\Cms\Services\RenderService;
+use Btybug\Console\Repository\AdminPagesRepository;
+use Btybug\Modules\Models\AdminPages;
 
 /**
  * Class UserHasPermission

@@ -6,9 +6,9 @@
  * Time: 4:28 PM
  */
 
-namespace Sahakavatar\User\Http\Requests\Status;
+namespace Btybug\User\Http\Requests\Status;
 
-use Sahakavatar\Cms\Http\Requests\Request;
+use Btybug\Cms\Http\Requests\Request;
 
 class CreateStatusRequest extends Request
 {

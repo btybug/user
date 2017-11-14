@@ -6,9 +6,9 @@
  * Time: 4:28 PM
  */
 
-namespace Sahakavatar\User\Http\Requests\Role;
+namespace Btybug\User\Http\Requests\Role;
 
-use Sahakavatar\Cms\Http\Requests\Request;
+use Btybug\Cms\Http\Requests\Request;
 
 class CreateRoleRequest extends Request
 {

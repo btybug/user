@@ -6,10 +6,10 @@
  * Time: 1:31 PM
  */
 
-namespace Sahakavatar\User\Repository;
+namespace Btybug\User\Repository;
 
-use Sahakavatar\Cms\Repositories\GeneralRepository;
-use Sahakavatar\User\Models\Roles;
+use Btybug\Cms\Repositories\GeneralRepository;
+use Btybug\User\Models\Roles;
 
 class RoleRepository extends GeneralRepository
 {

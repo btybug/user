@@ -44,8 +44,8 @@
                             </td>
 
                             <td>
-                                {{ \Sahakavatar\Cms\Helpers\helpers::formatDate($user->created_at) }}
-                                <p>{{ \Sahakavatar\Cms\Helpers\helpers::formatTime($user->created_at) }}</p>
+                                {{ \Btybug\Cms\Helpers\helpers::formatDate($user->created_at) }}
+                                <p>{{ \Btybug\Cms\Helpers\helpers::formatTime($user->created_at) }}</p>
                             </td>
                             <td>
                                 @if(Auth::user()->can('users.admins.edit'))
