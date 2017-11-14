@@ -33,7 +33,7 @@
 //            return view('fake');
 //        });
 //        Route::post('/fake', function (\Illuminate\Http\Request $request) {
-//            $helper = new \Sahakavatar\Cms\Helpers\helpers();
+//            $helper = new \Btybug\Cms\Helpers\helpers();
 //            $count = $request->get('count_users');
 //
 //            if ($count) {
