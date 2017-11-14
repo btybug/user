@@ -9,7 +9,7 @@
  *
  */
 
-namespace Btybug\User\Http\Controllers;
+namespace Sahakavatar\User\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Modules\Users\Http\Requests\RoleRequest;

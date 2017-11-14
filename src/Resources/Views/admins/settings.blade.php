@@ -1,4 +1,4 @@
-@extends('btybug::layouts.admin')
+@extends('cms::layouts.admin')
 
 @section('content')
     <div class="col-md-12">
@@ -56,10 +56,10 @@
             margin-top: 15px;
         }
     </style>
-    {!! HTML::style('js/select2/css/select2.min.css') !!}
+    {!! HTML::style('public/js/select2/css/select2.min.css') !!}
 @stop
 @section('JS')
-    {!! HTML::script('js/select2/js/select2.full.js') !!}
+    {!! HTML::script('public/js/select2/js/select2.full.js') !!}
     {!! HTML::script("/resources/assets/js/UiElements/bb_styles.js?v.5") !!}
     <script>
         $(document).ready(function () {

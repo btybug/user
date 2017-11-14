@@ -6,10 +6,10 @@
  * Time: 4:25 PM
  */
 
-namespace Btybug\User\Models;
+namespace Sahakavatar\User\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Btybug\User\Traits\ShinobiTrait;
+use Sahakavatar\User\Traits\ShinobiTrait;
 
 class MembershipPermissions extends Model
 {
@@ -87,11 +87,11 @@ class MembershipPermissions extends Model
 
     public function permissions()
     {
-        return $this->hasMany('Btybug\User\Models\Permissions', 'id', 'membership_id');
+        return $this->hasMany('Sahakavatar\User\Models\Permissions', 'id', 'membership_id');
     }
 
     public function membership()
     {
-        return $this->belongsTo('Btybug\User\Models\Membership', 'membership_id', 'id');
+        return $this->belongsTo('Sahakavatar\User\Models\Membership', 'membership_id', 'id');
     }
 }

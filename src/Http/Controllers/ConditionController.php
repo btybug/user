@@ -6,7 +6,7 @@
  * Time: 11:58 AM
  */
 
-namespace Btybug\User\Http\Controllers;
+namespace Sahakavatar\User\Http\Controllers;
 
 
 use App\Http\Controllers\Controller;

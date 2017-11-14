@@ -6,7 +6,7 @@
  * Time: 4:28 PM
  */
 
-namespace Btybug\User\Http\Requests\User;
+namespace Sahakavatar\User\Http\Requests\User;
 
 use Sahakavatar\Cms\Http\Requests\Request;
 

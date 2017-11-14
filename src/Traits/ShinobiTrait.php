@@ -9,7 +9,7 @@
  *
  */
 
-namespace Btybug\User\Traits;
+namespace Sahakavatar\User\Traits;
 
 /**
  * Class ShinobiTrait

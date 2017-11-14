@@ -7,14 +7,14 @@
  * Time: 3:52 PM
  */
 
-namespace Btybug\User\Services;
+namespace Sahakavatar\User\Services;
 
 use Sahakavatar\Cms\Services\GeneralService;
-use Btybug\Console\Repository\AdminPagesRepository;
-use Btybug\Console\Repository\FrontPagesRepository;
-use Btybug\User\Repository\PermissionRepository;
-use Btybug\User\Repository\PermissionRoleRepository;
-use Btybug\User\Repository\RoleRepository;
+use Sahakavatar\Console\Repository\AdminPagesRepository;
+use Sahakavatar\Console\Repository\FrontPagesRepository;
+use Sahakavatar\User\Repository\PermissionRepository;
+use Sahakavatar\User\Repository\PermissionRoleRepository;
+use Sahakavatar\User\Repository\RoleRepository;
 
 class PermissionService extends GeneralService
 {

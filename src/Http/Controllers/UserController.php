@@ -1,17 +1,17 @@
 <?php
 
-namespace Btybug\User\Http\Controllers;
+namespace Sahakavatar\User\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Datatables;
 use Illuminate\Http\Request;
-use Btybug\User\Http\Requests\User\CreateAdminRequest;
-use Btybug\User\Http\Requests\User\DeleteAdminRequest;
-use Btybug\User\Http\Requests\User\EditAdminRequest;
-use Btybug\User\Repository\UserProfileRepository;
-use Btybug\User\Repository\UserRepository;
-use Btybug\User\Services\RoleService;
-use Btybug\User\Services\UserService;
+use Sahakavatar\User\Http\Requests\User\CreateAdminRequest;
+use Sahakavatar\User\Http\Requests\User\DeleteAdminRequest;
+use Sahakavatar\User\Http\Requests\User\EditAdminRequest;
+use Sahakavatar\User\Repository\UserProfileRepository;
+use Sahakavatar\User\Repository\UserRepository;
+use Sahakavatar\User\Services\RoleService;
+use Sahakavatar\User\Services\UserService;
 use View;
 
 class UserController extends Controller

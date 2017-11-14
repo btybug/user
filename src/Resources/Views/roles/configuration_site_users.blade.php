@@ -1,4 +1,4 @@
-@extends('btybug::layouts.mTabs',['index'=>'users'])
+@extends('cms::layouts.mTabs',['index'=>'users'])
 @section('parag')
 
     <ol class="breadcrumb">

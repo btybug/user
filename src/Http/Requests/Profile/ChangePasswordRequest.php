@@ -6,7 +6,7 @@
  * Time: 4:28 PM
  */
 
-namespace Btybug\User\Http\Requests\Profile;
+namespace Sahakavatar\User\Http\Requests\Profile;
 
 use Illuminate\Support\Facades\Auth;
 use Sahakavatar\Cms\Http\Requests\Request;

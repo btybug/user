@@ -6,14 +6,14 @@
  * Time: 11:58 AM
  */
 
-namespace Btybug\User\Http\Controllers;
+namespace Sahakavatar\User\Http\Controllers;
 
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Btybug\User\Http\Requests\Status\CreateStatusRequest;
-use Btybug\User\Http\Requests\Status\EditStatusRequest;
-use Btybug\User\Repository\StatusRepository;
+use Sahakavatar\User\Http\Requests\Status\CreateStatusRequest;
+use Sahakavatar\User\Http\Requests\Status\EditStatusRequest;
+use Sahakavatar\User\Repository\StatusRepository;
 
 class StatusController extends Controller
 {

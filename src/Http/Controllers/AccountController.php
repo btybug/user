@@ -1,17 +1,17 @@
 <?php
 
-namespace Btybug\User\Http\Controllers;
+namespace Sahakavatar\User\Http\Controllers;
 
 use Illuminate\Contracts\Auth\Guard;
 use Sahakavatar\Cms\Http\Controllers\Controller;
-use Btybug\User\Http\Requests\Account\ChangeRegistrationRequest;
-use Btybug\User\Http\Requests\Account\SaveAccountRequest;
-use Btybug\User\Repository\UserRepository;
-use Btybug\User\Services\AccountService;
+use Sahakavatar\User\Http\Requests\Account\ChangeRegistrationRequest;
+use Sahakavatar\User\Http\Requests\Account\SaveAccountRequest;
+use Sahakavatar\User\Repository\UserRepository;
+use Sahakavatar\User\Services\AccountService;
 
 /**
  * Class AccountController
- * @package Btybug\User\Http\Controllers
+ * @package Sahakavatar\User\Http\Controllers
  */
 class AccountController extends Controller
 {

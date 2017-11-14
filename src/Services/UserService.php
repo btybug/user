@@ -7,13 +7,13 @@
  * Time: 3:52 PM
  */
 
-namespace Btybug\User\Services;
+namespace Sahakavatar\User\Services;
 
 use Illuminate\Support\Facades\Auth;
 use Sahakavatar\Cms\Services\GeneralService;
-use Btybug\User\Models\Roles;
-use Btybug\User\Repository\UserRepository;
-use Btybug\User\User;
+use Sahakavatar\User\Models\Roles;
+use Sahakavatar\User\Repository\UserRepository;
+use Sahakavatar\User\User;
 
 class UserService extends GeneralService
 {

@@ -1,4 +1,4 @@
-@extends('btybug::layouts.mTabs',['index'=>'admins_users'])
+@extends('cms::layouts.mTabs',['index'=>'admins_users'])
 @section('tab')
     <div class="row">
         <div class="col-md-12">
@@ -6,7 +6,7 @@
                 Add New User</a>
         </div>
         <div class="col-md-12 table-responsive p-0">
-            <table class="table table-bordered">
+            <table class="table table-btybug">
                 <thead>
                 <tr class="bg-black text-white">
                     <th width="63" align="center">#</th>
@@ -33,6 +33,8 @@
 
                             </td>
                             <td>
+                                {{--<span class="td-active">active</span>--}}
+                                {{--<span class="td-inactive">inactive</span>--}}
                                 {{ $user->status }}
                             </td>
 

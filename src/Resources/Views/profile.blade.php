@@ -1,4 +1,4 @@
-@extends('btybug::layouts.admin')
+@extends('cms::layouts.admin')
 
 @section('page_heading','Dashboard')
 @section('content')

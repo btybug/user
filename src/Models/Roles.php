@@ -1,10 +1,10 @@
 <?php
 
-namespace Btybug\User\Models;
+namespace Sahakavatar\User\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Btybug\Settings\Models\Settings;
-use Btybug\User\Traits\ShinobiTrait;
+use Sahakavatar\Settings\Models\Settings;
+use Sahakavatar\User\Traits\ShinobiTrait;
 
 class Roles extends Model
 {
@@ -56,12 +56,12 @@ class Roles extends Model
 
     public function users()
     {
-        return $this->hasMany('Btybug\User\User', 'role_id');
+        return $this->hasMany('Sahakavatar\User\User', 'role_id');
     }
 
     public function permission_role()
     {
-        return $this->hasMany('Btybug\User\Models\PermissionRole', 'page_id', 'id');
+        return $this->hasMany('Sahakavatar\User\Models\PermissionRole', 'page_id', 'id');
     }
 
     public function menus()

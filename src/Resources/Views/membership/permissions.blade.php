@@ -71,7 +71,7 @@
     </script>
 @stop
 @push('css')
-    {!! HTML::style('css/create_pages.css') !!}
-    {!! HTML::style('css/page.css?v=0.15') !!}
-    {!! HTML::style('css/admin_pages.css') !!}
+    {!! HTML::style('public/css/create_pages.css') !!}
+    {!! HTML::style('public/css/page.css?v=0.15') !!}
+    {!! HTML::style('public/css/admin_pages.css') !!}
 @endpush

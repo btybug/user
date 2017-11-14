@@ -7,10 +7,10 @@
  * Time: 3:52 PM
  */
 
-namespace Btybug\User\Services;
+namespace Sahakavatar\User\Services;
 
 use Sahakavatar\Cms\Services\GeneralService;
-use Btybug\User\Repository\RoleRepository;
+use Sahakavatar\User\Repository\RoleRepository;
 
 class RoleService extends GeneralService
 {

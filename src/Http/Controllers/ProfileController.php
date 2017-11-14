@@ -1,14 +1,14 @@
 <?php
 
-namespace Btybug\User\Http\Controllers;
+namespace Sahakavatar\User\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Auth;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
-use Btybug\User\Http\Requests\Profile\ChangePasswordRequest;
-use Btybug\User\Repository\UserRepository;
-use Btybug\User\Services\AccountService;
+use Sahakavatar\User\Http\Requests\Profile\ChangePasswordRequest;
+use Sahakavatar\User\Repository\UserRepository;
+use Sahakavatar\User\Services\AccountService;
 
 class ProfileController extends Controller
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Btybug\User\Providers;
+namespace Sahakavatar\User\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

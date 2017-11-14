@@ -1,4 +1,4 @@
-@extends('btybug::layouts.mTabs',['index'=>'admins_users'])
+@extends('cms::layouts.mTabs',['index'=>'admins_users'])
 
 @section('tab')
     <div class="row">
@@ -88,10 +88,10 @@
     @include('cms::_partials.delete_modal')
 @stop
 @section('CSS')
-    {!! HTML::style('js/datatable/css/jquery.dataTables.min.css') !!}
+    {!! HTML::style('public/js/datatable/css/jquery.dataTables.min.css') !!}
 @stop
 @section('JS')
-    {!! HTML::script('js/datatable/js/jquery.dataTables.min.js') !!}
+    {!! HTML::script('public/js/datatable/js/jquery.dataTables.min.js') !!}
 
 @stop
 

@@ -1,4 +1,4 @@
-@extends('btybug::layouts.mTabs',['index'=>'edit_profile'])
+@extends('cms::layouts.mTabs',['index'=>'edit_profile'])
 @section('tab')
 
 @stop

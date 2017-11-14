@@ -1,4 +1,4 @@
-@extends('btybug::layouts.admin')
+@extends('cms::layouts.admin')
 @section('content')
 
     <ol class="breadcrumb">
@@ -66,7 +66,7 @@
     </script>
 @stop
 @push('css')
-    {!! HTML::style('css/create_pages.css') !!}
-    {!! HTML::style('css/page.css?v=0.15') !!}
-    {!! HTML::style('css/admin_pages.css') !!}
+    {!! HTML::style('public/css/create_pages.css') !!}
+    {!! HTML::style('public/css/page.css?v=0.15') !!}
+    {!! HTML::style('public/css/admin_pages.css') !!}
 @endpush
