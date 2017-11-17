@@ -1,4 +1,4 @@
-@extends('cms::layouts.mTabs',['index'=>'role_membership'])
+@extends('btybug::layouts.mTabs',['index'=>'role_membership'])
 @section('tab')
 
     <ol class="breadcrumb">

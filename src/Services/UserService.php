@@ -10,7 +10,7 @@
 namespace Btybug\User\Services;
 
 use Illuminate\Support\Facades\Auth;
-use Btybug\Cms\Services\GeneralService;
+use Btybug\btybug\Services\GeneralService;
 use Btybug\User\Models\Roles;
 use Btybug\User\Repository\UserRepository;
 use Btybug\User\User;

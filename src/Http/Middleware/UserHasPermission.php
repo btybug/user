@@ -5,7 +5,7 @@ namespace Btybug\User\Http\Middleware;
 use App\User;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
-use Btybug\Cms\Services\RenderService;
+use Btybug\btybug\Services\RenderService;
 use Btybug\Console\Repository\AdminPagesRepository;
 use Btybug\Modules\Models\AdminPages;
 

@@ -1,1 +1,0 @@
-<a href="{!! url('/admin/users/[username]/qaq') !!}"><i class="fa fa-fa-hand-lizard-o"></i>{{ $name }}</a>

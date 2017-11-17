@@ -9,7 +9,7 @@
 
 namespace Btybug\User\Services;
 
-use Btybug\Cms\Services\GeneralService;
+use Btybug\btybug\Services\GeneralService;
 use Btybug\User\Repository\RoleRepository;
 
 class RoleService extends GeneralService

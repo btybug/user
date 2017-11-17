@@ -1,4 +1,4 @@
-@extends('cms::layouts.mTabs',['index'=>'admins_users'])
+@extends('btybug::layouts.mTabs',['index'=>'admins_users'])
 @section('tab')
     <div class="row">
         <div class="col-md-12">
@@ -44,8 +44,8 @@
                             </td>
 
                             <td>
-                                {{ \Btybug\Cms\Helpers\helpers::formatDate($user->created_at) }}
-                                <p>{{ \Btybug\Cms\Helpers\helpers::formatTime($user->created_at) }}</p>
+                                {{ \Btybug\btybug\Helpers\helpers::formatDate($user->created_at) }}
+                                <p>{{ \Btybug\btybug\Helpers\helpers::formatTime($user->created_at) }}</p>
                             </td>
                             <td>
                                 @if(Auth::user()->can('users.admins.edit'))
@@ -85,5 +85,5 @@
 
         </div>
     </div>
-    @include('cms::_partials.delete_modal')
+    @include('btybug::_partials.delete_modal')
 @stop

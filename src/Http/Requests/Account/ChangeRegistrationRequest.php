@@ -9,7 +9,7 @@
 
 namespace Btybug\User\Http\Requests\Account;
 
-use Btybug\Cms\Http\Requests\Request;
+use Btybug\btybug\Http\Requests\Request;
 
 class ChangeRegistrationRequest extends Request
 {

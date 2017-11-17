@@ -1,4 +1,4 @@
-@extends('cms::layouts.mTabs',['index'=>'edit_profile'])
+@extends('btybug::layouts.mTabs',['index'=>'edit_profile'])
 @section('tab')
     <div class="container-fluid">
         <div class="row">

@@ -8,7 +8,7 @@
 
 namespace Btybug\User\Http\Requests\User;
 
-use Btybug\Cms\Http\Requests\Request;
+use Btybug\btybug\Http\Requests\Request;
 
 class DeleteAdminRequest extends Request
 {

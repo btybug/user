@@ -3,7 +3,7 @@
 namespace Btybug\User\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Btybug\Settings\Models\Settings;
+use Btybug\btybug\Models\Settings;
 use Btybug\User\Traits\ShinobiTrait;
 
 class Roles extends Model

@@ -8,7 +8,7 @@
 
 namespace Btybug\User\Repository;
 
-use Btybug\Cms\Repositories\GeneralRepository;
+use Btybug\btybug\Repositories\GeneralRepository;
 use Btybug\User\Models\UsersProfile;
 
 
