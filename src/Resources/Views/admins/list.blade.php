@@ -1,4 +1,4 @@
-@extends('cms::layouts.mTabs',['index'=>'admins_users'])
+@extends('btybug::layouts.mTabs',['index'=>'admins_users'])
 
 @section('tab')
     <div class="row">
@@ -45,8 +45,8 @@
                             </td>
 
                             <td>
-                                {{ \Btybug\Cms\Helpers\helpers::formatDate($admin->created_at) }}
-                                <p>{{ \Btybug\Cms\Helpers\helpers::formatTime($admin->created_at) }}</p>
+                                {{ \Btybug\btybug\Helpers\helpers::formatDate($admin->created_at) }}
+                                <p>{{ \Btybug\btybug\Helpers\helpers::formatTime($admin->created_at) }}</p>
                             </td>
                             <td>
                             <span class="pull-left m-r-5">
@@ -85,7 +85,7 @@
             {!! $admins->render() !!}
         </div>
     </div>
-    @include('cms::_partials.delete_modal')
+    @include('btybug::_partials.delete_modal')
 @stop
 @section('CSS')
     {!! HTML::style('public/js/datatable/css/jquery.dataTables.min.css') !!}

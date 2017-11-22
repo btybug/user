@@ -13,7 +13,7 @@ use Btybug\Console\Repository\AdminPagesRepository;
 use Btybug\Modules\Models\AdminPages;
 use Validator;
 
-//use Btybug\Settings\Repository\AdminsettingRepository as Settings;
+//use Btybug\btybug\Repositories\AdminsettingRepository as Settings;
 //use App\Repositories\EmailsRepository;
 
 

@@ -9,7 +9,7 @@
 namespace Btybug\User\Http\Requests\Profile;
 
 use Illuminate\Support\Facades\Auth;
-use Btybug\Cms\Http\Requests\Request;
+use Btybug\btybug\Http\Requests\Request;
 
 class ChangePasswordRequest extends Request
 {

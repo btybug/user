@@ -52,19 +52,16 @@ class ModuleServiceProvider extends ServiceProvider
                 ]
             ], 'role_membership' => [
                 [
-                    'title' => 'Memberships',
-                    'url' => '/admin/users/memberships',
-                ], [
                     'title' => 'Roles',
                     'url' => '/admin/users/roles',
                 ],
                 [
                     'title' => 'Statuses',
-                    'url' => '/admin/users/statuses',
+                    'url' => '/admin/users/roles/statuses',
                 ],
                 [
                     'title' => 'Conditions',
-                    'url' => '/admin/users/conditions',
+                    'url' => '/admin/users/roles/conditions',
                 ]
             ]
         ];
@@ -124,6 +121,27 @@ class ModuleServiceProvider extends ServiceProvider
             ]
         ];
         \Eventy::action('user.options', $userOptions);
+
+        \Eventy::action('admin.menus', [
+            "title" => "Users",
+            "custom-link" => "",
+            "icon" => "fa fa-users",
+            "is_core" => "yes",
+            "children" => [
+                [
+                    "title" => "All Users",
+                    "custom-link" => "/admin/users",
+                    "icon" => "fa fa-angle-right",
+                    "is_core" => "yes"
+                ], [
+                    "title" => "Roles & Memberships",
+                    "custom-link" => "/admin/users/roles",
+                    "icon" => "fa fa-angle-right",
+                    "is_core" => "yes"
+                ]
+            ]
+        ]);
+
     }
 
     /**

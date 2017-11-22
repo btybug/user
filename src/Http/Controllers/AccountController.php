@@ -3,7 +3,7 @@
 namespace Btybug\User\Http\Controllers;
 
 use Illuminate\Contracts\Auth\Guard;
-use Btybug\Cms\Http\Controllers\Controller;
+use Btybug\btybug\Http\Controllers\Controller;
 use Btybug\User\Http\Requests\Account\ChangeRegistrationRequest;
 use Btybug\User\Http\Requests\Account\SaveAccountRequest;
 use Btybug\User\Repository\UserRepository;

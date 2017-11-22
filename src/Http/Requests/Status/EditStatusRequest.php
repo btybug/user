@@ -8,7 +8,7 @@
 
 namespace Btybug\User\Http\Requests\Status;
 
-use Btybug\Cms\Http\Requests\Request;
+use Btybug\btybug\Http\Requests\Request;
 
 class EditStatusRequest extends Request
 {

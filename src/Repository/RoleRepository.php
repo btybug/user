@@ -8,7 +8,7 @@
 
 namespace Btybug\User\Repository;
 
-use Btybug\Cms\Repositories\GeneralRepository;
+use Btybug\btybug\Repositories\GeneralRepository;
 use Btybug\User\Models\Roles;
 
 class RoleRepository extends GeneralRepository
@@ -38,4 +38,16 @@ class RoleRepository extends GeneralRepository
         return $this->model()->where('access', '!=', 1)->get();
     }
 
+    public function getAllWithGuest()
+    {
+        $items = $this->getAll();
+        $items->push([
+            'id' => 0,
+           'name' => 'Guests',
+           'slug' => 'guests',
+           'special' => 'no-access'
+        ]);
+
+        return $items->sort()->toArray();
+    }
 }

@@ -8,7 +8,7 @@
 
 namespace Btybug\User\Http\Requests\Role;
 
-use Btybug\Cms\Http\Requests\Request;
+use Btybug\btybug\Http\Requests\Request;
 
 class EditRoleRequest extends Request
 {

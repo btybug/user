@@ -9,7 +9,7 @@
 
 namespace Btybug\User\Services;
 
-use Btybug\Cms\Services\GeneralService;
+use Btybug\btybug\Services\GeneralService;
 use Btybug\Console\Repository\AdminPagesRepository;
 use Btybug\Console\Repository\FrontPagesRepository;
 use Btybug\User\Repository\PermissionRepository;
