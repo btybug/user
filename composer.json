@@ -8,7 +8,7 @@
         }
     ],
     "type": "module",
-    "route": "user",
+    "route": "users",
     "require": {},
 	"autoload": {
         "psr-4": {
